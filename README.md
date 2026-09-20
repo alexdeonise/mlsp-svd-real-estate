@@ -47,7 +47,7 @@ Copiază `custom_svd.py` din repo-ul tău în `src/`, apoi:
 python src/validate_svd.py --custom src/custom_svd.py --func SVD
 ```
 
-Scriptul încarcă `data/A.npy` (29275×408), rulează SVD-ul tău și `numpy.linalg.svd`, și scrie în
+Scriptul încarcă `data/A.npy` (28380×406), rulează SVD-ul tău și `numpy.linalg.svd`, și scrie în
 `results/svd_validation.csv`: eroarea relativă de reconstrucție ‖A − UΣVᵀ‖/‖A‖, ‖UᵀU − I‖, ‖VᵀV − I‖,
 diferența maximă între valorile singulare, timpul fiecăruia. În raportul tău ai făcut asta pe o matrice
 de test de 180×24; acum o facem pe cea reală. Cifrele intră în abstract.
@@ -83,3 +83,31 @@ De citit: Isolation Forest, Liu et al. 2008, https://ieeexplore.ieee.org/documen
 
 Un experiment e gata când scriptul îl reproduce de la zero și CSV-ul sau figura e comisă în `results/`
 sau `figures/`. Nu „merge la mine în notebook".
+
+## Rezultate actuale
+
+Setul final de date conține 28.380 de tranzacții și 406 caracteristici.
+Tranzacțiile cu prețul de vânzare sub 10.000 USD sunt eliminate în mod
+consistent înainte de construirea matricelor folosite în toate experimentele.
+
+- Rangul numeric al matricei complete: 387
+- Rank-k, matrice completă: k90 = 319, k95 = 343
+- Rank-k, doar variabile numerice: k90 = 4, k95 = 4
+- Regresie least squares pe prețul brut: R² ≈ 0.727
+- Ridge cu alpha=1000 pe log(preț): R² ≈ 0.780
+
+### De ce poate fi R² negativ pentru regresia pe log(preț)?
+
+Când folosim `--log-target`, modelul este antrenat pe `log(1 + preț)`.
+Predicțiile sunt apoi transformate înapoi în dolari cu `expm1`, iar RMSE,
+MAE și R² sunt calculate în spațiul prețului original.
+
+În cazul least squares fără regularizare, erori relativ mici în spațiul
+logaritmic pot deveni erori foarte mari după transformarea exponențială.
+Dacă suma erorilor pătratice rezultate este mai mare decât cea obținută
+prin prezicerea prețului mediu pentru toate tranzacțiile, R² devine negativ.
+
+Prin urmare, valoarea negativă a R² nu indică o eroare în calcul, ci faptul
+că modelul least squares pe ținta logaritmică produce predicții slabe după
+transformarea înapoi în dolari. Regularizarea Ridge limitează predicțiile
+extreme; în experimentele noastre, alpha=1000 obține R² ≈ 0.780.
