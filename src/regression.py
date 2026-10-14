@@ -1,6 +1,7 @@
 import argparse, os, numpy as np, pandas as pd
 
 from build_matrix import load_clean
+from svd_common import compute_svd, format_svd_info
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 DATA = os.path.join(ROOT, "data")
@@ -18,18 +19,6 @@ def load_data(csv_path, A_path, y_path):
         )
 
     return A, y, df
-
-
-def compute_svd(A, tol=1e-10):
-    U, s, Vt = np.linalg.svd(A, full_matrices=False)
-
-    if len(s) == 0:
-        return U, s, Vt, 0
-
-    cutoff = tol * s[0]
-    rank = int(np.sum(s > cutoff))
-
-    return U[:, :rank], s[:rank], Vt[:rank, :], rank
 
 
 def predict_least_squares(U, s, Vt, y_centered, y_mean):
@@ -220,9 +209,21 @@ def main():
     )
 
     parser.add_argument(
-        "--tol",
+        "--solver",
+        choices=["custom", "numpy"],
+        default="numpy"
+    )
+
+    parser.add_argument(
+        "--rtol",
         type=float,
         default=1e-10
+    )
+
+    parser.add_argument(
+        "--atol",
+        type=float,
+        default=0.0
     )
 
     parser.add_argument(
@@ -244,10 +245,20 @@ def main():
     print("y:", y.shape)
     print("log target:", args.log_target)
 
-    U, s, Vt, rank = compute_svd(
+    U_full, s_full, Vt_full, svd_info = compute_svd(
         A,
-        args.tol
+        solver=args.solver,
+        rtol=args.rtol,
+        atol=args.atol
     )
+
+    print(format_svd_info(svd_info))
+
+    rank = svd_info["rank"]
+
+    U = U_full[:, :rank]
+    s = s_full[:rank]
+    Vt = Vt_full[:rank, :]
 
     print("numerical rank:", rank)
 

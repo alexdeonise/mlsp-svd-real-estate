@@ -5,7 +5,7 @@ import os
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.insert(0, os.path.join(ROOT, "src"))
 
-from custom_svd import SVD
+from svd_common import compute_svd, format_svd_info
 
 rng = np.random.default_rng(42)
 
@@ -15,17 +15,17 @@ A = rng.normal(size=(100, 5))
 A[:, 3] = A[:, 0] + 2 * A[:, 1]
 A[:, 4] = 3 * A[:, 2]
 
-U, S, V = SVD(A)
-
-s_custom = np.diag(S)
-rank_custom = np.sum(s_custom > 0)
-
-s_numpy = np.linalg.svd(A, compute_uv=False)
-rank_numpy = np.linalg.matrix_rank(A)
-
 print("shape:", A.shape)
 print("expected rank:", 3)
-print("custom rank:", rank_custom)
-print("numpy rank:", rank_numpy)
-print("custom singular values:", s_custom)
-print("numpy singular values:", s_numpy)
+
+for solver in ["custom", "numpy"]:
+    U, s, Vt, info = compute_svd(A, solver=solver)
+
+    print(format_svd_info(info))
+    print(f"{solver:<7} singular values:", s)
+    assert Vt.shape == (5, 5) and U.shape == (100, 5), \
+        f"forme economice gresite: U{U.shape}, Vt{Vt.shape}"
+    assert np.all(np.diff(s) <= 0), "valorile singulare nu sunt sortate descrescator"
+    assert np.all(s >= 0), "valori singulare negative necuratate"
+
+print("OK: ambele solvere produc U, s, Vt cu acelasi format")

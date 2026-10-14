@@ -374,7 +374,9 @@ def QR_iteration(A, Q, TOL=1e-6):
         _diag(T)
     )
 
-    return D, V
+    converged = active_end <= 1
+
+    return D, V, total_iters, converged
 
 
 def _complete_orthonormal_basis(U, constructed, missing, TOL=1e-12):
@@ -422,7 +424,7 @@ def _complete_orthonormal_basis(U, constructed, missing, TOL=1e-12):
     return U
 
 
-def SVD(A, TOL=1e-14, RTOL=1e-6):
+def SVD(A, TOL=1e-14, RTOL=1e-6, return_info=False):
     A = np.copy(A).astype(float)
 
     m = A.shape[0]
@@ -432,7 +434,7 @@ def SVD(A, TOL=1e-14, RTOL=1e-6):
 
     Q0, T0 = Tridiag_Householder(B)
 
-    D, V = QR_iteration(
+    D, V, qr_iters, qr_converged = QR_iteration(
         B,
         Q0
     )
@@ -444,6 +446,12 @@ def SVD(A, TOL=1e-14, RTOL=1e-6):
     val = val[indici]
 
     V = V[:, indici]
+
+    n_negative = int(
+        np.sum(
+            val < 0
+        )
+    )
 
     val[val < 0] = 0.0
 
@@ -457,6 +465,12 @@ def SVD(A, TOL=1e-14, RTOL=1e-6):
     cutoff = max(
         TOL,
         RTOL * sigma_max
+    )
+
+    n_small = int(
+        np.sum(
+            sigma < cutoff
+        )
     )
 
     sigma[
@@ -521,5 +535,24 @@ def SVD(A, TOL=1e-14, RTOL=1e-6):
         constructed,
         missing
     )
+
+    if return_info:
+        info = {
+            "iterations": qr_iters,
+            "converged": bool(
+                qr_converged
+            ),
+            "qr_tol": 1e-6,
+            "cutoff": cutoff,
+            "rtol": RTOL,
+            "atol": TOL,
+            "n_negative_clipped": n_negative,
+            "n_small_zeroed": n_small,
+            "n_constructed_u": len(
+                constructed
+            ),
+        }
+
+        return U, S, V, info
 
     return U, S, V

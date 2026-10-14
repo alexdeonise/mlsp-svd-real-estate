@@ -34,3 +34,15 @@ re-rulare comparabilă se salvează într-un director nou, de forma
 | `regression_metrics_log.csv` | idem, ținta log1p(preț) | A + y |
 | `regression_neighborhood_concentration*.csv` | concentrarea reziduurilor pe cartiere | A + y |
 | `least_squares_top50_*.csv` / `ridge_alpha_*_top50_*.csv` | top 50 supra/subevaluate | A + y |
+
+## Note de audit (adăugate la revizuirea pipeline-ului)
+
+- **`anomalies_svd_numeric.csv` a fost generat cu `--k 4`**, deși default-ul
+  curent al scriptului este `--k 5`. Pe matricea completă baseline-ul folosește
+  k=5 (reprodus bit-cu-bit cu `--k 5`; cu `--k 4` scorurile coincid exact cu
+  cele de aici). Diferența e una de configurare, nu de eroare numerică —
+  de regenerat cu `--k 4` dacă se vrea coerență cu default-ul, sau de
+  documentat explicit în raport.
+- Toate celelalte CSV-uri de anomalii, acord și corelație se reproduc cu
+  codul curent (seed 42); rank-k și regresia (numpy) se reproduc numeric
+  exact (diferențe doar de formatare float în CSV).

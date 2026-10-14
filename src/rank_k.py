@@ -4,6 +4,8 @@ import os
 
 import numpy as np
 
+from svd_common import compute_svd, format_svd_info
+
 
 ROOT = os.path.join(
     os.path.dirname(os.path.abspath(__file__)),
@@ -24,21 +26,45 @@ def main():
         required=True
     )
 
+    ap.add_argument(
+        "--solver",
+        choices=["custom", "numpy"],
+        default="numpy"
+    )
+
+    ap.add_argument(
+        "--rtol",
+        type=float,
+        default=None
+    )
+
+    ap.add_argument(
+        "--atol",
+        type=float,
+        default=None
+    )
+
     a = ap.parse_args()
 
     A = np.load(a.A)
 
-    s = np.linalg.svd(
+    U, s, Vt, info = compute_svd(
         A,
-        compute_uv=False
+        solver=a.solver,
+        rtol=a.rtol,
+        atol=a.atol
     )
+
+    print(format_svd_info(info))
+
+    numerical_rank = info["rank"]
 
     energy = s ** 2
 
-    info = np.cumsum(energy) / np.sum(energy)
+    info_kept = np.cumsum(energy) / np.sum(energy)
 
     remaining = np.clip(
-        1.0 - info,
+        1.0 - info_kept,
         0.0,
         1.0
     )
@@ -47,19 +73,17 @@ def main():
 
     k90 = int(
         np.searchsorted(
-            info,
+            info_kept,
             0.90
         ) + 1
     )
 
     k95 = int(
         np.searchsorted(
-            info,
+            info_kept,
             0.95
         ) + 1
     )
-
-    numerical_rank = np.linalg.matrix_rank(A)
 
     os.makedirs(
         os.path.dirname(a.out),
@@ -85,7 +109,7 @@ def main():
         ):
             w.writerow([
                 k,
-                f"{info[k - 1]:.6f}",
+                f"{info_kept[k - 1]:.6f}",
                 f"{rel_err[k - 1]:.6f}"
             ])
 

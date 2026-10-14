@@ -17,31 +17,24 @@ să fie exhaustivă. Audit făcut pe branch-ul `revision/custom-svd-pipeline`.
 
 ### `np.linalg.svd`
 
-1. **`src/validate_svd.py:54`** — referința NumPy pentru validarea SVD-ului custom.
+1. **`src/svd_common.py`** (`compute_svd`) — **unicul punct de intrare** pentru
+   SVD în pipeline. Apelează `np.linalg.svd(A, full_matrices=False)` pentru
+   `solver="numpy"` sau `custom_svd.SVD` pentru `solver="custom"` și normalizează
+   ambele rezultate la formatul comun `U, s, Vt` (s vector, ordonat
+   descrescător, rang numeric comun, info de convergență). Scripturile
+   `src/rank_k.py`, `src/regression.py`, `src/anomaly_detectors.py` nu mai
+   apelează direct `np.linalg.svd`; o fac prin `compute_svd`, cu `--solver
+   custom|numpy` în linia de comandă.
+
+2. **`src/validate_svd.py:54`** — referința NumPy pentru validarea brută a
+   SVD-ului custom (rămas nemodificat intenționat: etalonul de comparație).
    - Intrare: `data/A.npy` (28380×406, implicit; suprascriibil prin `--A`).
    - `full_matrices=False`; valorile singulare `sn` și `Vtn` comparate cu
      rezultatul custom (eroare de reconstrucție, ortogonalitate, diferența de
      valori singulare).
    - Acest apel **trebuie păstrat** în orice revizuire: este etalonul de comparație.
 
-2. **`src/rank_k.py:31`** (`compute_uv=False`) — curba de eroare de reconstrucție
-   în funcție de k și pragurile k90/k95.
-   - Intrare: matrice dată prin `--A` (în practică `data/A.npy` sau
-     `data/A_numeric.npy`; nu presupune aceeași matrice — verifică
-     `results/rank_k_full.csv` vs `results/rank_k_numeric.csv`).
-
-3. **`src/regression.py:24`** (`compute_svd`, `full_matrices=False`) — baza
-   regresiei least squares și ridge.
-   - Intrare: matricea din `--A` (implicit `data/A.npy`, 28380×406) și `y.npy`.
-   - Rangul propriu-zis se calculează cu pragul `tol=1e-10` relativ la σ₁
-     (`src/regression.py:29-30`), **nu** cu `np.linalg.matrix_rank` — cele două
-     convenții pot da rezultate diferite.
-
-4. **`scripts/test_synthetic_rank.py:23`** (`compute_uv=False`) — test pe
-   matrice sintetică 100×5 de rang exact 3 (`rng.default_rng(42)`), compară
-   valorile singulare custom vs NumPy.
-
-5. **`scripts/verify_reproducibility.py:427`** — duplicat al validării custom vs
+3. **`scripts/verify_reproducibility.py:427`** — duplicat al validării custom vs
    NumPy din `src/validate_svd.py`, folosit în verificarea de reproducibilitate.
    - Atenție: logica e duplicată între cele două fișiere; orice modificare a
      convenției de validare trebuie aplicată în ambele.
@@ -49,10 +42,15 @@ să fie exhaustivă. Audit făcut pe branch-ul `revision/custom-svd-pipeline`.
 ### `np.linalg.matrix_rank`
 
 1. **`src/validate_svd.py:58`** — rangul numeric raportat în `results/svd_validation.csv`.
-2. **`src/rank_k.py:62`** — rangul numeric tipărit la rularea rank-k.
-3. **`scripts/test_synthetic_rank.py:24`** — rangul de referință pe matricea sintetică.
+2. **`scripts/test_synthetic_rank.py`** — înlocuit cu criteriul comun din
+   `svd_common` (testul compară acum ambii solveri prin `compute_svd`).
+3. ~~`src/rank_k.py:62`~~ — eliminat; rank_k folosește `info["rank"]` din
+   `compute_svd` (aceeași convenție NumPy implicit, deci aceleași valori).
 
 Convenția implicită NumPy: `s > max(m,n) * eps * s[0]` (eps float64 ≈ 2.22e-16).
+Criteriul comun din `svd_common.compute_svd` coincide cu ea când `rtol`/`atol`
+sunt `None`; cu toleranțe explicite rangul poate diferi — vezi docstring-ul
+modulului.
 
 ## Ce NU folosește NumPy (de verificat la revizuire)
 
