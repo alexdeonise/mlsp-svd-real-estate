@@ -1,0 +1,8 @@
+pair,n_a,n_b,common,jaccard
+iforest&kmeans,1419,1419,540,0.2350
+iforest&svd,1419,1419,861,0.4355
+kmeans&svd,1419,1419,445,0.1860
+all_methods,,,414,
+only_iforest,,,432,
+only_kmeans,,,848,
+only_svd,,,527,

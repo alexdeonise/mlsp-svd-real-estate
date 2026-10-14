@@ -1,0 +1,5 @@
+matrice,metoda,corelatie_cu_norma
+A_numeric.npy,svd,0.260
+A_numeric.npy,svd_radical,0.448
+A_numeric.npy,kmeans,0.647
+A_numeric.npy,iforest,0.365
