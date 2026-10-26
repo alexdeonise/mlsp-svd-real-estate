@@ -95,6 +95,35 @@ def main():
     axes[0].set_ylim(0, 1.02)
     axes[0].grid(alpha=0.2)
 
+    probe_ks = (5, 10, 20, 50)
+
+    for k in probe_ks:
+        if k > len(full):
+            continue
+
+        energy = float(
+            full.loc[
+                full["k"] == k,
+                "info_kept",
+            ].iloc[0]
+        )
+
+        axes[0].plot(
+            [k],
+            [energy],
+            marker="o",
+            color="red",
+        )
+
+        axes[0].annotate(
+            f"k={k}: {energy:.1%}",
+            xy=(k, energy),
+            xytext=(5, 5),
+            textcoords="offset points",
+            fontsize=8,
+            color="red",
+        )
+
     axes[1].plot(
         numeric["k"],
         numeric["info_kept"],
@@ -130,7 +159,8 @@ def main():
     axes[1].grid(alpha=0.2)
 
     fig.suptitle(
-        "SVD information retained: full vs numeric features"
+        "SVD information retained: full vs numeric features "
+        "(custom solver; numpy overlap perfect la k mic)"
     )
 
     fig.tight_layout()

@@ -1,0 +1,343 @@
+model,solver,group,neighborhood,count,share
+least_squares,custom,undervalued,KIPS BAY,4,0.08
+least_squares,custom,undervalued,MIDTOWN CBD,3,0.06
+least_squares,custom,undervalued,JAVITS CENTER,3,0.06
+least_squares,custom,undervalued,SOHO,3,0.06
+least_squares,custom,undervalued,MOUNT HOPE/MOUNT EDEN,3,0.06
+least_squares,custom,undervalued,FASHION,2,0.04
+least_squares,custom,undervalued,DOWNTOWN-METROTECH,2,0.04
+least_squares,custom,undervalued,FINANCIAL,2,0.04
+least_squares,custom,undervalued,MIDTOWN WEST,2,0.04
+least_squares,custom,undervalued,EAST NEW YORK,1,0.02
+least_squares,custom,undervalued,GRAMERCY,1,0.02
+least_squares,custom,undervalued,REGO PARK,1,0.02
+least_squares,custom,undervalued,BROOKLYN HEIGHTS,1,0.02
+least_squares,custom,undervalued,CIVIC CENTER,1,0.02
+least_squares,custom,undervalued,WILLIAMSBURG-SOUTH,1,0.02
+least_squares,custom,undervalued,UPPER EAST SIDE (59-79),1,0.02
+least_squares,custom,undervalued,HARLEM-CENTRAL,1,0.02
+least_squares,custom,undervalued,MOTT HAVEN/PORT MORRIS,1,0.02
+least_squares,custom,undervalued,HARLEM-EAST,1,0.02
+least_squares,custom,undervalued,FLATBUSH-NORTH,1,0.02
+least_squares,custom,undervalued,SHEEPSHEAD BAY,1,0.02
+least_squares,custom,undervalued,KENSINGTON,1,0.02
+least_squares,custom,undervalued,LONG ISLAND CITY,1,0.02
+least_squares,custom,undervalued,WILLIAMSBURG-EAST,1,0.02
+least_squares,custom,undervalued,HARLEM-UPPER,1,0.02
+least_squares,custom,undervalued,PROSPECT HEIGHTS,1,0.02
+least_squares,custom,undervalued,WILLIAMSBURG-NORTH,1,0.02
+least_squares,custom,undervalued,UPPER EAST SIDE (79-96),1,0.02
+least_squares,custom,undervalued,CASTLE HILL/UNIONPORT,1,0.02
+least_squares,custom,undervalued,CHELSEA,1,0.02
+least_squares,custom,undervalued,RED HOOK,1,0.02
+least_squares,custom,undervalued,CROWN HEIGHTS,1,0.02
+least_squares,custom,undervalued,GREENWICH VILLAGE-CENTRAL,1,0.02
+least_squares,custom,undervalued,RIVERDALE,1,0.02
+least_squares,custom,undervalued,KINGSBRIDGE HTS/UNIV HTS,1,0.02
+least_squares,custom,overvalued,KIPS BAY,4,0.08
+least_squares,custom,overvalued,MIDTOWN CBD,3,0.06
+least_squares,custom,overvalued,MOUNT HOPE/MOUNT EDEN,3,0.06
+least_squares,custom,overvalued,SOHO,3,0.06
+least_squares,custom,overvalued,JAVITS CENTER,3,0.06
+least_squares,custom,overvalued,FINANCIAL,2,0.04
+least_squares,custom,overvalued,MIDTOWN WEST,2,0.04
+least_squares,custom,overvalued,FASHION,2,0.04
+least_squares,custom,overvalued,DOWNTOWN-METROTECH,2,0.04
+least_squares,custom,overvalued,KINGSBRIDGE HTS/UNIV HTS,1,0.02
+least_squares,custom,overvalued,RIVERDALE,1,0.02
+least_squares,custom,overvalued,GREENWICH VILLAGE-CENTRAL,1,0.02
+least_squares,custom,overvalued,CROWN HEIGHTS,1,0.02
+least_squares,custom,overvalued,RED HOOK,1,0.02
+least_squares,custom,overvalued,CHELSEA,1,0.02
+least_squares,custom,overvalued,CASTLE HILL/UNIONPORT,1,0.02
+least_squares,custom,overvalued,UPPER EAST SIDE (79-96),1,0.02
+least_squares,custom,overvalued,WILLIAMSBURG-NORTH,1,0.02
+least_squares,custom,overvalued,PROSPECT HEIGHTS,1,0.02
+least_squares,custom,overvalued,HARLEM-UPPER,1,0.02
+least_squares,custom,overvalued,WILLIAMSBURG-EAST,1,0.02
+least_squares,custom,overvalued,LONG ISLAND CITY,1,0.02
+least_squares,custom,overvalued,KENSINGTON,1,0.02
+least_squares,custom,overvalued,SHEEPSHEAD BAY,1,0.02
+least_squares,custom,overvalued,FLATBUSH-NORTH,1,0.02
+least_squares,custom,overvalued,HARLEM-EAST,1,0.02
+least_squares,custom,overvalued,MOTT HAVEN/PORT MORRIS,1,0.02
+least_squares,custom,overvalued,HARLEM-CENTRAL,1,0.02
+least_squares,custom,overvalued,UPPER EAST SIDE (59-79),1,0.02
+least_squares,custom,overvalued,WILLIAMSBURG-SOUTH,1,0.02
+least_squares,custom,overvalued,CIVIC CENTER,1,0.02
+least_squares,custom,overvalued,BROOKLYN HEIGHTS,1,0.02
+least_squares,custom,overvalued,REGO PARK,1,0.02
+least_squares,custom,overvalued,GRAMERCY,1,0.02
+least_squares,custom,overvalued,EAST NEW YORK,1,0.02
+ridge_alpha_100,custom,undervalued,KIPS BAY,4,0.08
+ridge_alpha_100,custom,undervalued,MIDTOWN CBD,3,0.06
+ridge_alpha_100,custom,undervalued,JAVITS CENTER,3,0.06
+ridge_alpha_100,custom,undervalued,SOHO,3,0.06
+ridge_alpha_100,custom,undervalued,MOUNT HOPE/MOUNT EDEN,3,0.06
+ridge_alpha_100,custom,undervalued,FASHION,2,0.04
+ridge_alpha_100,custom,undervalued,DOWNTOWN-METROTECH,2,0.04
+ridge_alpha_100,custom,undervalued,WILLIAMSBURG-NORTH,2,0.04
+ridge_alpha_100,custom,undervalued,FINANCIAL,2,0.04
+ridge_alpha_100,custom,undervalued,MIDTOWN WEST,2,0.04
+ridge_alpha_100,custom,undervalued,EAST NEW YORK,1,0.02
+ridge_alpha_100,custom,undervalued,GRAMERCY,1,0.02
+ridge_alpha_100,custom,undervalued,BROOKLYN HEIGHTS,1,0.02
+ridge_alpha_100,custom,undervalued,CIVIC CENTER,1,0.02
+ridge_alpha_100,custom,undervalued,WILLIAMSBURG-SOUTH,1,0.02
+ridge_alpha_100,custom,undervalued,UPPER EAST SIDE (59-79),1,0.02
+ridge_alpha_100,custom,undervalued,MOTT HAVEN/PORT MORRIS,1,0.02
+ridge_alpha_100,custom,undervalued,HARLEM-CENTRAL,1,0.02
+ridge_alpha_100,custom,undervalued,HARLEM-EAST,1,0.02
+ridge_alpha_100,custom,undervalued,FLATBUSH-NORTH,1,0.02
+ridge_alpha_100,custom,undervalued,SHEEPSHEAD BAY,1,0.02
+ridge_alpha_100,custom,undervalued,KENSINGTON,1,0.02
+ridge_alpha_100,custom,undervalued,LONG ISLAND CITY,1,0.02
+ridge_alpha_100,custom,undervalued,WILLIAMSBURG-EAST,1,0.02
+ridge_alpha_100,custom,undervalued,HARLEM-UPPER,1,0.02
+ridge_alpha_100,custom,undervalued,PROSPECT HEIGHTS,1,0.02
+ridge_alpha_100,custom,undervalued,UPPER EAST SIDE (79-96),1,0.02
+ridge_alpha_100,custom,undervalued,CASTLE HILL/UNIONPORT,1,0.02
+ridge_alpha_100,custom,undervalued,CHELSEA,1,0.02
+ridge_alpha_100,custom,undervalued,RED HOOK,1,0.02
+ridge_alpha_100,custom,undervalued,CROWN HEIGHTS,1,0.02
+ridge_alpha_100,custom,undervalued,GREENWICH VILLAGE-CENTRAL,1,0.02
+ridge_alpha_100,custom,undervalued,RIVERDALE,1,0.02
+ridge_alpha_100,custom,undervalued,KINGSBRIDGE HTS/UNIV HTS,1,0.02
+ridge_alpha_100,custom,overvalued,KIPS BAY,4,0.08
+ridge_alpha_100,custom,overvalued,MIDTOWN CBD,3,0.06
+ridge_alpha_100,custom,overvalued,MOUNT HOPE/MOUNT EDEN,3,0.06
+ridge_alpha_100,custom,overvalued,SOHO,3,0.06
+ridge_alpha_100,custom,overvalued,JAVITS CENTER,3,0.06
+ridge_alpha_100,custom,overvalued,FINANCIAL,2,0.04
+ridge_alpha_100,custom,overvalued,MIDTOWN WEST,2,0.04
+ridge_alpha_100,custom,overvalued,FASHION,2,0.04
+ridge_alpha_100,custom,overvalued,WILLIAMSBURG-NORTH,2,0.04
+ridge_alpha_100,custom,overvalued,DOWNTOWN-METROTECH,2,0.04
+ridge_alpha_100,custom,overvalued,KINGSBRIDGE HTS/UNIV HTS,1,0.02
+ridge_alpha_100,custom,overvalued,RIVERDALE,1,0.02
+ridge_alpha_100,custom,overvalued,GREENWICH VILLAGE-CENTRAL,1,0.02
+ridge_alpha_100,custom,overvalued,CROWN HEIGHTS,1,0.02
+ridge_alpha_100,custom,overvalued,RED HOOK,1,0.02
+ridge_alpha_100,custom,overvalued,CHELSEA,1,0.02
+ridge_alpha_100,custom,overvalued,CASTLE HILL/UNIONPORT,1,0.02
+ridge_alpha_100,custom,overvalued,UPPER EAST SIDE (79-96),1,0.02
+ridge_alpha_100,custom,overvalued,PROSPECT HEIGHTS,1,0.02
+ridge_alpha_100,custom,overvalued,HARLEM-UPPER,1,0.02
+ridge_alpha_100,custom,overvalued,WILLIAMSBURG-EAST,1,0.02
+ridge_alpha_100,custom,overvalued,LONG ISLAND CITY,1,0.02
+ridge_alpha_100,custom,overvalued,KENSINGTON,1,0.02
+ridge_alpha_100,custom,overvalued,SHEEPSHEAD BAY,1,0.02
+ridge_alpha_100,custom,overvalued,FLATBUSH-NORTH,1,0.02
+ridge_alpha_100,custom,overvalued,HARLEM-EAST,1,0.02
+ridge_alpha_100,custom,overvalued,HARLEM-CENTRAL,1,0.02
+ridge_alpha_100,custom,overvalued,MOTT HAVEN/PORT MORRIS,1,0.02
+ridge_alpha_100,custom,overvalued,UPPER EAST SIDE (59-79),1,0.02
+ridge_alpha_100,custom,overvalued,WILLIAMSBURG-SOUTH,1,0.02
+ridge_alpha_100,custom,overvalued,CIVIC CENTER,1,0.02
+ridge_alpha_100,custom,overvalued,BROOKLYN HEIGHTS,1,0.02
+ridge_alpha_100,custom,overvalued,GRAMERCY,1,0.02
+ridge_alpha_100,custom,overvalued,EAST NEW YORK,1,0.02
+ridge_alpha_1000,custom,undervalued,KIPS BAY,4,0.08
+ridge_alpha_1000,custom,undervalued,MIDTOWN CBD,3,0.06
+ridge_alpha_1000,custom,undervalued,JAVITS CENTER,3,0.06
+ridge_alpha_1000,custom,undervalued,SOHO,3,0.06
+ridge_alpha_1000,custom,undervalued,MOUNT HOPE/MOUNT EDEN,3,0.06
+ridge_alpha_1000,custom,undervalued,FASHION,2,0.04
+ridge_alpha_1000,custom,undervalued,WILLIAMSBURG-NORTH,2,0.04
+ridge_alpha_1000,custom,undervalued,DOWNTOWN-METROTECH,2,0.04
+ridge_alpha_1000,custom,undervalued,FINANCIAL,2,0.04
+ridge_alpha_1000,custom,undervalued,MIDTOWN WEST,2,0.04
+ridge_alpha_1000,custom,undervalued,EAST NEW YORK,1,0.02
+ridge_alpha_1000,custom,undervalued,BROOKLYN HEIGHTS,1,0.02
+ridge_alpha_1000,custom,undervalued,GRAMERCY,1,0.02
+ridge_alpha_1000,custom,undervalued,WILLIAMSBURG-SOUTH,1,0.02
+ridge_alpha_1000,custom,undervalued,UPPER EAST SIDE (59-79),1,0.02
+ridge_alpha_1000,custom,undervalued,MOTT HAVEN/PORT MORRIS,1,0.02
+ridge_alpha_1000,custom,undervalued,HARLEM-EAST,1,0.02
+ridge_alpha_1000,custom,undervalued,HARLEM-CENTRAL,1,0.02
+ridge_alpha_1000,custom,undervalued,FLATBUSH-NORTH,1,0.02
+ridge_alpha_1000,custom,undervalued,KENSINGTON,1,0.02
+ridge_alpha_1000,custom,undervalued,SHEEPSHEAD BAY,1,0.02
+ridge_alpha_1000,custom,undervalued,LONG ISLAND CITY,1,0.02
+ridge_alpha_1000,custom,undervalued,WILLIAMSBURG-EAST,1,0.02
+ridge_alpha_1000,custom,undervalued,HARLEM-UPPER,1,0.02
+ridge_alpha_1000,custom,undervalued,PROSPECT HEIGHTS,1,0.02
+ridge_alpha_1000,custom,undervalued,UPPER EAST SIDE (79-96),1,0.02
+ridge_alpha_1000,custom,undervalued,CASTLE HILL/UNIONPORT,1,0.02
+ridge_alpha_1000,custom,undervalued,CHELSEA,1,0.02
+ridge_alpha_1000,custom,undervalued,RED HOOK,1,0.02
+ridge_alpha_1000,custom,undervalued,CROWN HEIGHTS,1,0.02
+ridge_alpha_1000,custom,undervalued,REGO PARK,1,0.02
+ridge_alpha_1000,custom,undervalued,RIVERDALE,1,0.02
+ridge_alpha_1000,custom,undervalued,GREENWICH VILLAGE-CENTRAL,1,0.02
+ridge_alpha_1000,custom,undervalued,KINGSBRIDGE HTS/UNIV HTS,1,0.02
+ridge_alpha_1000,custom,overvalued,KIPS BAY,4,0.08
+ridge_alpha_1000,custom,overvalued,MIDTOWN CBD,3,0.06
+ridge_alpha_1000,custom,overvalued,MOUNT HOPE/MOUNT EDEN,3,0.06
+ridge_alpha_1000,custom,overvalued,SOHO,3,0.06
+ridge_alpha_1000,custom,overvalued,JAVITS CENTER,3,0.06
+ridge_alpha_1000,custom,overvalued,FINANCIAL,2,0.04
+ridge_alpha_1000,custom,overvalued,MIDTOWN WEST,2,0.04
+ridge_alpha_1000,custom,overvalued,FASHION,2,0.04
+ridge_alpha_1000,custom,overvalued,WILLIAMSBURG-NORTH,2,0.04
+ridge_alpha_1000,custom,overvalued,DOWNTOWN-METROTECH,2,0.04
+ridge_alpha_1000,custom,overvalued,KINGSBRIDGE HTS/UNIV HTS,1,0.02
+ridge_alpha_1000,custom,overvalued,GREENWICH VILLAGE-CENTRAL,1,0.02
+ridge_alpha_1000,custom,overvalued,RIVERDALE,1,0.02
+ridge_alpha_1000,custom,overvalued,REGO PARK,1,0.02
+ridge_alpha_1000,custom,overvalued,CROWN HEIGHTS,1,0.02
+ridge_alpha_1000,custom,overvalued,RED HOOK,1,0.02
+ridge_alpha_1000,custom,overvalued,CHELSEA,1,0.02
+ridge_alpha_1000,custom,overvalued,CASTLE HILL/UNIONPORT,1,0.02
+ridge_alpha_1000,custom,overvalued,UPPER EAST SIDE (79-96),1,0.02
+ridge_alpha_1000,custom,overvalued,PROSPECT HEIGHTS,1,0.02
+ridge_alpha_1000,custom,overvalued,HARLEM-UPPER,1,0.02
+ridge_alpha_1000,custom,overvalued,WILLIAMSBURG-EAST,1,0.02
+ridge_alpha_1000,custom,overvalued,LONG ISLAND CITY,1,0.02
+ridge_alpha_1000,custom,overvalued,SHEEPSHEAD BAY,1,0.02
+ridge_alpha_1000,custom,overvalued,KENSINGTON,1,0.02
+ridge_alpha_1000,custom,overvalued,FLATBUSH-NORTH,1,0.02
+ridge_alpha_1000,custom,overvalued,HARLEM-CENTRAL,1,0.02
+ridge_alpha_1000,custom,overvalued,HARLEM-EAST,1,0.02
+ridge_alpha_1000,custom,overvalued,MOTT HAVEN/PORT MORRIS,1,0.02
+ridge_alpha_1000,custom,overvalued,UPPER EAST SIDE (59-79),1,0.02
+ridge_alpha_1000,custom,overvalued,WILLIAMSBURG-SOUTH,1,0.02
+ridge_alpha_1000,custom,overvalued,GRAMERCY,1,0.02
+ridge_alpha_1000,custom,overvalued,BROOKLYN HEIGHTS,1,0.02
+ridge_alpha_1000,custom,overvalued,EAST NEW YORK,1,0.02
+ridge_alpha_10000,custom,undervalued,KIPS BAY,4,0.08
+ridge_alpha_10000,custom,undervalued,JAVITS CENTER,3,0.06
+ridge_alpha_10000,custom,undervalued,UPPER EAST SIDE (59-79),3,0.06
+ridge_alpha_10000,custom,undervalued,MOUNT HOPE/MOUNT EDEN,3,0.06
+ridge_alpha_10000,custom,undervalued,FINANCIAL,3,0.06
+ridge_alpha_10000,custom,undervalued,FASHION,3,0.06
+ridge_alpha_10000,custom,undervalued,MIDTOWN WEST,2,0.04
+ridge_alpha_10000,custom,undervalued,DOWNTOWN-METROTECH,2,0.04
+ridge_alpha_10000,custom,undervalued,MIDTOWN CBD,2,0.04
+ridge_alpha_10000,custom,undervalued,GREENWICH VILLAGE-WEST,1,0.02
+ridge_alpha_10000,custom,undervalued,ASTORIA,1,0.02
+ridge_alpha_10000,custom,undervalued,ELMHURST,1,0.02
+ridge_alpha_10000,custom,undervalued,MOTT HAVEN/PORT MORRIS,1,0.02
+ridge_alpha_10000,custom,undervalued,HARLEM-EAST,1,0.02
+ridge_alpha_10000,custom,undervalued,WILLIAMSBURG-SOUTH,1,0.02
+ridge_alpha_10000,custom,undervalued,KENSINGTON,1,0.02
+ridge_alpha_10000,custom,undervalued,FLATBUSH-NORTH,1,0.02
+ridge_alpha_10000,custom,undervalued,HARLEM-CENTRAL,1,0.02
+ridge_alpha_10000,custom,undervalued,SOHO,1,0.02
+ridge_alpha_10000,custom,undervalued,LONG ISLAND CITY,1,0.02
+ridge_alpha_10000,custom,undervalued,SHEEPSHEAD BAY,1,0.02
+ridge_alpha_10000,custom,undervalued,WILLIAMSBURG-EAST,1,0.02
+ridge_alpha_10000,custom,undervalued,HARLEM-UPPER,1,0.02
+ridge_alpha_10000,custom,undervalued,PROSPECT HEIGHTS,1,0.02
+ridge_alpha_10000,custom,undervalued,CASTLE HILL/UNIONPORT,1,0.02
+ridge_alpha_10000,custom,undervalued,CHELSEA,1,0.02
+ridge_alpha_10000,custom,undervalued,UPPER EAST SIDE (79-96),1,0.02
+ridge_alpha_10000,custom,undervalued,RED HOOK,1,0.02
+ridge_alpha_10000,custom,undervalued,CROWN HEIGHTS,1,0.02
+ridge_alpha_10000,custom,undervalued,WILLIAMSBURG-NORTH,1,0.02
+ridge_alpha_10000,custom,undervalued,RIVERDALE,1,0.02
+ridge_alpha_10000,custom,undervalued,KINGSBRIDGE HTS/UNIV HTS,1,0.02
+ridge_alpha_10000,custom,undervalued,REGO PARK,1,0.02
+ridge_alpha_10000,custom,undervalued,GREENWICH VILLAGE-CENTRAL,1,0.02
+ridge_alpha_10000,custom,overvalued,KIPS BAY,4,0.08
+ridge_alpha_10000,custom,overvalued,FINANCIAL,3,0.06
+ridge_alpha_10000,custom,overvalued,FASHION,3,0.06
+ridge_alpha_10000,custom,overvalued,MOUNT HOPE/MOUNT EDEN,3,0.06
+ridge_alpha_10000,custom,overvalued,UPPER EAST SIDE (59-79),3,0.06
+ridge_alpha_10000,custom,overvalued,JAVITS CENTER,3,0.06
+ridge_alpha_10000,custom,overvalued,MIDTOWN CBD,2,0.04
+ridge_alpha_10000,custom,overvalued,DOWNTOWN-METROTECH,2,0.04
+ridge_alpha_10000,custom,overvalued,MIDTOWN WEST,2,0.04
+ridge_alpha_10000,custom,overvalued,GREENWICH VILLAGE-CENTRAL,1,0.02
+ridge_alpha_10000,custom,overvalued,REGO PARK,1,0.02
+ridge_alpha_10000,custom,overvalued,KINGSBRIDGE HTS/UNIV HTS,1,0.02
+ridge_alpha_10000,custom,overvalued,RIVERDALE,1,0.02
+ridge_alpha_10000,custom,overvalued,WILLIAMSBURG-NORTH,1,0.02
+ridge_alpha_10000,custom,overvalued,CROWN HEIGHTS,1,0.02
+ridge_alpha_10000,custom,overvalued,RED HOOK,1,0.02
+ridge_alpha_10000,custom,overvalued,UPPER EAST SIDE (79-96),1,0.02
+ridge_alpha_10000,custom,overvalued,CHELSEA,1,0.02
+ridge_alpha_10000,custom,overvalued,CASTLE HILL/UNIONPORT,1,0.02
+ridge_alpha_10000,custom,overvalued,PROSPECT HEIGHTS,1,0.02
+ridge_alpha_10000,custom,overvalued,HARLEM-UPPER,1,0.02
+ridge_alpha_10000,custom,overvalued,WILLIAMSBURG-EAST,1,0.02
+ridge_alpha_10000,custom,overvalued,SHEEPSHEAD BAY,1,0.02
+ridge_alpha_10000,custom,overvalued,LONG ISLAND CITY,1,0.02
+ridge_alpha_10000,custom,overvalued,SOHO,1,0.02
+ridge_alpha_10000,custom,overvalued,HARLEM-CENTRAL,1,0.02
+ridge_alpha_10000,custom,overvalued,FLATBUSH-NORTH,1,0.02
+ridge_alpha_10000,custom,overvalued,KENSINGTON,1,0.02
+ridge_alpha_10000,custom,overvalued,WILLIAMSBURG-SOUTH,1,0.02
+ridge_alpha_10000,custom,overvalued,HARLEM-EAST,1,0.02
+ridge_alpha_10000,custom,overvalued,MOTT HAVEN/PORT MORRIS,1,0.02
+ridge_alpha_10000,custom,overvalued,ELMHURST,1,0.02
+ridge_alpha_10000,custom,overvalued,ASTORIA,1,0.02
+ridge_alpha_10000,custom,overvalued,GREENWICH VILLAGE-WEST,1,0.02
+ridge_alpha_100000,custom,undervalued,KIPS BAY,4,0.08
+ridge_alpha_100000,custom,undervalued,MOUNT HOPE/MOUNT EDEN,3,0.06
+ridge_alpha_100000,custom,undervalued,FINANCIAL,3,0.06
+ridge_alpha_100000,custom,undervalued,FASHION,3,0.06
+ridge_alpha_100000,custom,undervalued,MIDTOWN CBD,3,0.06
+ridge_alpha_100000,custom,undervalued,UPPER EAST SIDE (59-79),2,0.04
+ridge_alpha_100000,custom,undervalued,WILLIAMSBURG-NORTH,2,0.04
+ridge_alpha_100000,custom,undervalued,ELMHURST,2,0.04
+ridge_alpha_100000,custom,undervalued,MIDTOWN WEST,2,0.04
+ridge_alpha_100000,custom,undervalued,DOWNTOWN-METROTECH,2,0.04
+ridge_alpha_100000,custom,undervalued,MOTT HAVEN/PORT MORRIS,1,0.02
+ridge_alpha_100000,custom,undervalued,WASHINGTON HEIGHTS UPPER,1,0.02
+ridge_alpha_100000,custom,undervalued,KENSINGTON,1,0.02
+ridge_alpha_100000,custom,undervalued,CLINTON HILL,1,0.02
+ridge_alpha_100000,custom,undervalued,WILLIAMSBURG-SOUTH,1,0.02
+ridge_alpha_100000,custom,undervalued,FLATBUSH-LEFFERTS GARDEN,1,0.02
+ridge_alpha_100000,custom,undervalued,HARLEM-EAST,1,0.02
+ridge_alpha_100000,custom,undervalued,FLATBUSH-NORTH,1,0.02
+ridge_alpha_100000,custom,undervalued,HARLEM-CENTRAL,1,0.02
+ridge_alpha_100000,custom,undervalued,WILLIAMSBURG-EAST,1,0.02
+ridge_alpha_100000,custom,undervalued,LONG ISLAND CITY,1,0.02
+ridge_alpha_100000,custom,undervalued,SHEEPSHEAD BAY,1,0.02
+ridge_alpha_100000,custom,undervalued,SOHO,1,0.02
+ridge_alpha_100000,custom,undervalued,PROSPECT HEIGHTS,1,0.02
+ridge_alpha_100000,custom,undervalued,HARLEM-UPPER,1,0.02
+ridge_alpha_100000,custom,undervalued,CHELSEA,1,0.02
+ridge_alpha_100000,custom,undervalued,CASTLE HILL/UNIONPORT,1,0.02
+ridge_alpha_100000,custom,undervalued,UPPER EAST SIDE (79-96),1,0.02
+ridge_alpha_100000,custom,undervalued,RED HOOK,1,0.02
+ridge_alpha_100000,custom,undervalued,CROWN HEIGHTS,1,0.02
+ridge_alpha_100000,custom,undervalued,RIVERDALE,1,0.02
+ridge_alpha_100000,custom,undervalued,KINGSBRIDGE HTS/UNIV HTS,1,0.02
+ridge_alpha_100000,custom,undervalued,REGO PARK,1,0.02
+ridge_alpha_100000,custom,undervalued,GREENWICH VILLAGE-CENTRAL,1,0.02
+ridge_alpha_100000,custom,overvalued,KIPS BAY,4,0.08
+ridge_alpha_100000,custom,overvalued,MIDTOWN CBD,3,0.06
+ridge_alpha_100000,custom,overvalued,FINANCIAL,3,0.06
+ridge_alpha_100000,custom,overvalued,FASHION,3,0.06
+ridge_alpha_100000,custom,overvalued,MOUNT HOPE/MOUNT EDEN,3,0.06
+ridge_alpha_100000,custom,overvalued,DOWNTOWN-METROTECH,2,0.04
+ridge_alpha_100000,custom,overvalued,WILLIAMSBURG-NORTH,2,0.04
+ridge_alpha_100000,custom,overvalued,MIDTOWN WEST,2,0.04
+ridge_alpha_100000,custom,overvalued,ELMHURST,2,0.04
+ridge_alpha_100000,custom,overvalued,UPPER EAST SIDE (59-79),2,0.04
+ridge_alpha_100000,custom,overvalued,GREENWICH VILLAGE-CENTRAL,1,0.02
+ridge_alpha_100000,custom,overvalued,REGO PARK,1,0.02
+ridge_alpha_100000,custom,overvalued,KINGSBRIDGE HTS/UNIV HTS,1,0.02
+ridge_alpha_100000,custom,overvalued,RIVERDALE,1,0.02
+ridge_alpha_100000,custom,overvalued,CROWN HEIGHTS,1,0.02
+ridge_alpha_100000,custom,overvalued,RED HOOK,1,0.02
+ridge_alpha_100000,custom,overvalued,UPPER EAST SIDE (79-96),1,0.02
+ridge_alpha_100000,custom,overvalued,CASTLE HILL/UNIONPORT,1,0.02
+ridge_alpha_100000,custom,overvalued,CHELSEA,1,0.02
+ridge_alpha_100000,custom,overvalued,HARLEM-UPPER,1,0.02
+ridge_alpha_100000,custom,overvalued,PROSPECT HEIGHTS,1,0.02
+ridge_alpha_100000,custom,overvalued,SOHO,1,0.02
+ridge_alpha_100000,custom,overvalued,SHEEPSHEAD BAY,1,0.02
+ridge_alpha_100000,custom,overvalued,LONG ISLAND CITY,1,0.02
+ridge_alpha_100000,custom,overvalued,WILLIAMSBURG-EAST,1,0.02
+ridge_alpha_100000,custom,overvalued,HARLEM-CENTRAL,1,0.02
+ridge_alpha_100000,custom,overvalued,FLATBUSH-NORTH,1,0.02
+ridge_alpha_100000,custom,overvalued,HARLEM-EAST,1,0.02
+ridge_alpha_100000,custom,overvalued,FLATBUSH-LEFFERTS GARDEN,1,0.02
+ridge_alpha_100000,custom,overvalued,WILLIAMSBURG-SOUTH,1,0.02
+ridge_alpha_100000,custom,overvalued,CLINTON HILL,1,0.02
+ridge_alpha_100000,custom,overvalued,KENSINGTON,1,0.02
+ridge_alpha_100000,custom,overvalued,WASHINGTON HEIGHTS UPPER,1,0.02
+ridge_alpha_100000,custom,overvalued,MOTT HAVEN/PORT MORRIS,1,0.02

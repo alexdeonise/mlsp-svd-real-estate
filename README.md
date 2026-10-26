@@ -15,6 +15,7 @@ Punctul de plecare e proiectul Mariei: https://github.com/mariatimbus/NYC_RealEs
 
 - [Maria](docs/plan-maria.md)
 - [David](docs/plan-david.md)
+- [Reproductibilitatea numerică a SVD-ului custom](docs/reproductibilitate-numerica.md) — matricea Gram, conditioning la pătrat, criterii de convergență, praguri de rang (M4)
 
 ## Setup (5 minute)
 
@@ -32,9 +33,11 @@ Nu ai nevoie de GPU. Totul rulează pe laptop.
 ```
 src/build_matrix.py      curatare + one-hot + standardizare, exact ca in raportul Mariei -> A (m x n)
 src/validate_svd.py      compara un SVD custom cu numpy: reconstructie, ortogonalitate, timp      (Maria)
-src/rank_k.py            eroarea de reconstructie in functie de k, pragurile 90% / 95%            (Maria)
+src/rank_k.py            energia retinuta la k = 5/10/20/50, pragurile 90% / 95%, custom vs numpy  (Maria)
+src/regression.py        least squares + ridge cu evaluare 80/20 train/test, validare pentru alpha (Maria)
 src/anomaly_detectors.py trei scoruri: SVD reconstruction, K-Means distance, Isolation Forest    (David)
 src/agreement.py         Jaccard intre liste, cate proprietati sunt marcate de toate metodele    (David)
+scripts/compare_solvers.py  validarea M1: aceleasi tolerante, custom vs numpy pe ambele matrici
 results/                 CSV-uri si liste de proprietati
 figures/                 figurile, generate din scripturi
 ```
@@ -90,24 +93,42 @@ Setul final de date conține 28.380 de tranzacții și 406 caracteristici.
 Tranzacțiile cu prețul de vânzare sub 10.000 USD sunt eliminate în mod
 consistent înainte de construirea matricelor folosite în toate experimentele.
 
-- Rangul numeric al matricei complete: 387
-- Rank-k, matrice completă: k90 = 319, k95 = 343
-- Rank-k, doar variabile numerice: k90 = 4, k95 = 4
-- Regresie least squares pe prețul brut: R² ≈ 0.727
-- Ridge cu alpha=1000 pe log(preț): R² ≈ 0.780
+- Rangul numeric al matricei complete: 387 (numpy) / 393 (custom — cele 6
+  direcții în plus sunt zgomot de la formarea AᵀA, vezi
+  `docs/reproductibilitate-numerica.md`)
+- Rank-k, matrice completă: k90 = 319, k95 = 343; energia la k=5 este
+  **3.6%**, la k=50 este 22.6% (ambele solver-e coincid până la ~1e-15)
+- Rank-k, doar variabile numerice: k90 = k95 = 4; energia la k=5 este 100%
+- Regresie cu evaluare corectă train/test (80/20, seed 42, standardizare
+  fitată doar pe train, α Ridge ales pe validare):
+  - preț brut, least squares: test R² ≈ 0.459 (in-sample era 0.727 — gap
+    de generalizare, nu de calcul)
+  - log(1+preț), Ridge α=1000 (ales pe validare): test R² ≈ 0.933,
+    RMSE ≈ 8.06M USD
 
-### De ce poate fi R² negativ pentru regresia pe log(preț)?
+### Solver custom vs numpy (M1)
 
-Când folosim `--log-target`, modelul este antrenat pe `log(1 + preț)`.
-Predicțiile sunt apoi transformate înapoi în dolari cu `expm1`, iar RMSE,
-MAE și R² sunt calculate în spațiul prețului original.
+`compute_svd` din `src/svd_common.py` folosește implicit solverul custom,
+cu același prag de rang și aceleași toleranțe pentru ambele implementări.
+Validarea completă (valori singulare, reconstrucție, ortogonalitate,
+predicții de regresie) este în `results/solver_comparison.csv`, generată
+cu `python scripts/compare_solvers.py`.
 
-În cazul least squares fără regularizare, erori relativ mici în spațiul
-logaritmic pot deveni erori foarte mari după transformarea exponențială.
-Dacă suma erorilor pătratice rezultate este mai mare decât cea obținută
-prin prezicerea prețului mediu pentru toate tranzacțiile, R² devine negativ.
+### De ce este R² catastrofal de mic pentru log(1+preț) fără regularizare?
 
-Prin urmare, valoarea negativă a R² nu indică o eroare în calcul, ci faptul
-că modelul least squares pe ținta logaritmică produce predicții slabe după
-transformarea înapoi în dolari. Regularizarea Ridge limitează predicțiile
-extreme; în experimentele noastre, alpha=1000 obține R² ≈ 0.780.
+Least squares pe ținta logaritmică, evaluat corect pe test, dă R² ≈ −379.
+Cauza nu e calculul, ci transformarea inversă: erori mici în spațiul log
+devin predicții exponențiale. Diagnosticul din
+`results/log_target_diagnostics.csv`:
+
+- predicția maximă pe test: **47.8 miliarde USD** (maximul real: 2.2 miliarde);
+- 9 predicții peste 100M USD, una peste 1 miliarde;
+- top 5 cele mai mari reziduuri contribuie cu 99.996% la SS_res — R² e
+  distrus de un număr de puncte care se numără pe degete.
+
+Ridge comprimă exact aceste direcții explozive: la α=1000 predicția maximă
+scade la 1.9 miliarde USD și R² pe test ajunge la 0.933. Figura
+`figures/regression_log_ls_investigation.png` arată predicția de 47.8
+miliarde și, în același timp, că reziduurile centrale 99% sunt strânse
+în jurul zero — modelul e bun tipic, dar expm1 amplifică catastrofal
+cozile. Valoarea veche R² = −1.98 era aceeași poveste, măsurată in-sample.

@@ -1,10 +1,10 @@
 """Interfața comună de SVD pentru întregul pipeline.
 
-    U, s, Vt, info = compute_svd(A, solver="numpy")
+    U, s, Vt, info = compute_svd(A, solver="custom")
 
 Fiecare script care are nevoie de o descompunere SVD trece prin aici, ca
-solver-ul să fie interschimbabil (`custom` sau `numpy`) fără să schimbe restul
-codului.
+solver-ul să fie interschimbabil (`custom` — implementarea principală, sau
+`numpy` — linia de bază de comparație) fără să schimbe restul codului.
 
 Convenții (uniforme pentru ambele solver-e):
 
@@ -95,7 +95,7 @@ def _sort_descending(
 
 def compute_svd(
     A,
-    solver="numpy",
+    solver="custom",
     rtol=None,
     atol=None,
 ):
@@ -104,13 +104,16 @@ def compute_svd(
     Parametri
     ---------
     A : (m, n) array
-    solver : "custom" | "numpy"
+    solver : "custom" | "numpy" (implicit "custom")
         `custom` cere m >= n (SVD-ul Mariei construiește U cu n coloane
-        în R^m); `numpy` funcționează pentru orice formă.
+        în R^m); `numpy` funcționează pentru orice formă și e păstrat
+        drept linie de bază de comparație.
     rtol, atol : float sau None
         Toleranțele criteriului de rang numeric. None + None → convenția
-        NumPy. Pentru solverul custom sunt transmise și în interiorul
-        `SVD()` (care taie valorile singulare sub max(atol, rtol·σ₁)).
+        NumPy. Pragul de rang e aplicat o singură dată, după rularea
+        solverului, identic pentru ambele implementări — solverul custom
+        primește intern doar un prag de ordinul zgomotului de mașină
+        (TOL=1e-14, RTOL=0), ca decizia de rang să nu depindă de solver.
 
     Returnează
     ----------
@@ -151,8 +154,8 @@ def compute_svd(
     else:
         U, S, V, custom_info = SVD(
             A,
-            TOL=1e-14 if atol is None else atol,
-            RTOL=1e-6 if rtol is None else rtol,
+            TOL=1e-14,
+            RTOL=0.0,
             return_info=True,
         )
 

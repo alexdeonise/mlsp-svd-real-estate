@@ -1,3 +1,19 @@
+"""Figuri pentru regresia cu evaluare train/test (M2).
+
+Citeste:
+  results/regression_tt_metrics.csv                  metrici pe train/test
+  results/least_squares_top50_*_custom.csv           top residualuri pe test
+  results/regression_neighborhood_concentration_custom.csv
+  results/log_ls_test_predictions.csv                investigatia R² negativ
+
+Scrie:
+  figures/regression_metrics.png                     RMSE/MAE/R² pe test, raw vs log
+  figures/regression_train_vs_test.png               metrici train vs test
+  figures/regression_residual_distribution.png
+  figures/regression_neighborhood_concentration.png
+  figures/regression_log_ls_investigation.png        actual vs predictit log-LS
+"""
+
 import os
 
 import pandas as pd
@@ -15,16 +31,22 @@ ROOT = os.path.join(
 RESULTS = os.path.join(ROOT, "results")
 FIGURES = os.path.join(ROOT, "figures")
 
+METRICS = ["rmse", "mae", "r2"]
+TITLES = ["RMSE", "MAE", "R²"]
+
 
 def plot_metrics():
     df = pd.read_csv(
         os.path.join(
             RESULTS,
-            "regression_metrics.csv"
+            "regression_tt_metrics.csv"
         )
     )
 
-    labels = df["model"].tolist()
+    df = df[
+        (df["solver"] == "custom")
+        & (df["split"] == "test")
+    ]
 
     fig, axes = plt.subplots(
         1,
@@ -32,38 +54,40 @@ def plot_metrics():
         figsize=(15, 4.5)
     )
 
-    axes[0].bar(
-        labels,
-        df["rmse"]
-    )
-    axes[0].set_title("RMSE by model")
-    axes[0].set_ylabel("RMSE")
-    axes[0].tick_params(
-        axis="x",
-        rotation=45
-    )
+    for target, color in [
+        ("raw", "steelblue"),
+        ("log", "darkorange"),
+    ]:
+        sub = df[
+            df["target"] == target
+        ]
 
-    axes[1].bar(
-        labels,
-        df["mae"]
-    )
-    axes[1].set_title("MAE by model")
-    axes[1].set_ylabel("MAE")
-    axes[1].tick_params(
-        axis="x",
-        rotation=45
-    )
+        labels = sub["model"].tolist()
 
-    axes[2].bar(
-        labels,
-        df["r2"]
-    )
-    axes[2].set_title("R² by model")
-    axes[2].set_ylabel("R²")
-    axes[2].tick_params(
-        axis="x",
-        rotation=45
-    )
+        for i, metric in enumerate(METRICS):
+            axes[i].bar(
+                labels,
+                sub[metric],
+                alpha=0.6,
+                label=target,
+                color=color,
+            )
+
+    for i, metric in enumerate(METRICS):
+        axes[i].set_title(
+            f"{TITLES[i]} by model (test)"
+        )
+
+        axes[i].set_ylabel(
+            TITLES[i]
+        )
+
+        axes[i].tick_params(
+            axis="x",
+            rotation=45,
+        )
+
+    axes[0].legend()
 
     fig.tight_layout()
 
@@ -83,18 +107,108 @@ def plot_metrics():
     print("scris:", out)
 
 
+def plot_train_vs_test():
+    df = pd.read_csv(
+        os.path.join(
+            RESULTS,
+            "regression_tt_metrics.csv"
+        )
+    )
+
+    df = df[df["solver"] == "custom"]
+
+    models = df["model"].unique().tolist()
+
+    x = range(len(models))
+
+    width = 0.35
+
+    fig, axes = plt.subplots(
+        2,
+        3,
+        figsize=(16, 8)
+    )
+
+    for row, target in enumerate(["raw", "log"]):
+        sub = df[df["target"] == target]
+
+        train = sub[
+            sub["split"] == "train"
+        ].set_index("model")
+
+        test = sub[
+            sub["split"] == "test"
+        ].set_index("model")
+
+        for i, metric in enumerate(METRICS):
+            axes[row][i].bar(
+                [
+                    xi - width / 2
+                    for xi in x
+                ],
+                [
+                    train.loc[m, metric]
+                    for m in models
+                ],
+                width,
+                label="train",
+            )
+
+            axes[row][i].bar(
+                [
+                    xi + width / 2
+                    for xi in x
+                ],
+                [
+                    test.loc[m, metric]
+                    for m in models
+                ],
+                width,
+                label="test",
+            )
+
+            axes[row][i].set_title(
+                f"{TITLES[i]} — target {target}"
+            )
+
+            axes[row][i].set_xticks(x)
+            axes[row][i].set_xticklabels(
+                models,
+                rotation=45,
+            )
+
+    axes[0][0].legend()
+
+    fig.tight_layout()
+
+    out = os.path.join(
+        FIGURES,
+        "regression_train_vs_test.png"
+    )
+
+    plt.savefig(
+        out,
+        dpi=200,
+        bbox_inches="tight"
+    )
+
+    plt.close()
+
+    print("scris:", out)
+
+
 def plot_residual_distribution():
     df = pd.read_csv(
         os.path.join(
             RESULTS,
-            "least_squares_top50_undervalued.csv"
+            "least_squares_top50_undervalued_custom.csv"
         )
     )
 
     df_over = pd.read_csv(
         os.path.join(
             RESULTS,
-            "least_squares_top50_overvalued.csv"
+            "least_squares_top50_overvalued_custom.csv"
         )
     )
 
@@ -120,10 +234,10 @@ def plot_residual_distribution():
         linestyle="--"
     )
 
-    plt.xlabel("Residual")
+    plt.xlabel("Residual (USD)")
     plt.ylabel("Count")
     plt.title(
-        "Least squares residuals for top under/overvalued properties"
+        "Least squares residuals for top under/overvalued test properties"
     )
 
     plt.tight_layout()
@@ -148,7 +262,7 @@ def plot_neighborhood_concentration():
     df = pd.read_csv(
         os.path.join(
             RESULTS,
-            "regression_neighborhood_concentration.csv"
+            "regression_neighborhood_concentration_custom.csv"
         )
     )
 
@@ -194,7 +308,7 @@ def plot_neighborhood_concentration():
         "Top neighborhoods - undervalued"
     )
     axes[0].set_xlabel(
-        "Count in top 50"
+        "Count in top 50 (test)"
     )
 
     axes[1].barh(
@@ -207,7 +321,7 @@ def plot_neighborhood_concentration():
         "Top neighborhoods - overvalued"
     )
     axes[1].set_xlabel(
-        "Count in top 50"
+        "Count in top 50 (test)"
     )
 
     fig.tight_layout()
@@ -228,6 +342,96 @@ def plot_neighborhood_concentration():
     print("scris:", out)
 
 
+def plot_log_ls_investigation():
+    """De ce R² e negativ pe log(1+pret): predicții expoblansate."""
+    df = pd.read_csv(
+        os.path.join(
+            RESULTS,
+            "log_ls_test_predictions.csv"
+        )
+    )
+
+    fig, axes = plt.subplots(
+        1,
+        2,
+        figsize=(13, 5.5)
+    )
+
+    axes[0].scatter(
+        df["actual_usd"],
+        df["predicted_usd"],
+        s=4,
+        alpha=0.3,
+    )
+
+    lims = [
+        0,
+        max(
+            df["actual_usd"].max(),
+            df["predicted_usd"].max(),
+        )
+        * 1.05,
+    ]
+
+    axes[0].plot(
+        lims,
+        lims,
+        "r--",
+        linewidth=1,
+    )
+
+    axes[0].set_xlim(lims)
+    axes[0].set_ylim(lims)
+
+    axes[0].set_xlabel("Actual price (USD)")
+    axes[0].set_ylabel("Predicted price (USD)")
+    axes[0].set_title(
+        "Log-target least squares: actual vs predicted (test)"
+    )
+
+    residual = (
+        df["actual_usd"] - df["predicted_usd"]
+    )
+
+    axes[1].hist(
+        residual[
+            residual.abs()
+            < residual.abs().quantile(0.99)
+        ],
+        bins=50,
+    )
+
+    axes[1].axvline(
+        0,
+        linestyle="--",
+    )
+
+    axes[1].set_xlabel(
+        "Residual (USD), central 99%"
+    )
+    axes[1].set_ylabel("Count")
+    axes[1].set_title(
+        "Residual distribution (tails clipped for display)"
+    )
+
+    fig.tight_layout()
+
+    out = os.path.join(
+        FIGURES,
+        "regression_log_ls_investigation.png"
+    )
+
+    plt.savefig(
+        out,
+        dpi=200,
+        bbox_inches="tight"
+    )
+
+    plt.close()
+
+    print("scris:", out)
+
+
 def main():
     os.makedirs(
         FIGURES,
@@ -235,8 +439,10 @@ def main():
     )
 
     plot_metrics()
+    plot_train_vs_test()
     plot_residual_distribution()
     plot_neighborhood_concentration()
+    plot_log_ls_investigation()
 
 
 if __name__ == "__main__":

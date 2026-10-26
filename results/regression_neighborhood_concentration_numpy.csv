@@ -1,0 +1,345 @@
+model,solver,group,neighborhood,count,share
+least_squares,numpy,undervalued,JAVITS CENTER,5,0.1
+least_squares,numpy,undervalued,FINANCIAL,3,0.06
+least_squares,numpy,undervalued,MIDTOWN CBD,3,0.06
+least_squares,numpy,undervalued,FASHION,2,0.04
+least_squares,numpy,undervalued,UPPER WEST SIDE (59-79),2,0.04
+least_squares,numpy,undervalued,WILLIAMSBURG-NORTH,2,0.04
+least_squares,numpy,undervalued,SOHO,2,0.04
+least_squares,numpy,undervalued,MIDTOWN WEST,2,0.04
+least_squares,numpy,undervalued,LONG ISLAND CITY,2,0.04
+least_squares,numpy,undervalued,KIPS BAY,2,0.04
+least_squares,numpy,undervalued,BROWNSVILLE,1,0.02
+least_squares,numpy,undervalued,EAST NEW YORK,1,0.02
+least_squares,numpy,undervalued,WOODROW,1,0.02
+least_squares,numpy,undervalued,UPPER EAST SIDE (59-79),1,0.02
+least_squares,numpy,undervalued,REGO PARK,1,0.02
+least_squares,numpy,undervalued,CIVIC CENTER,1,0.02
+least_squares,numpy,undervalued,RED HOOK,1,0.02
+least_squares,numpy,undervalued,KINGSBRIDGE/JEROME PARK,1,0.02
+least_squares,numpy,undervalued,HARLEM-WEST,1,0.02
+least_squares,numpy,undervalued,CROWN HEIGHTS,1,0.02
+least_squares,numpy,undervalued,WILLIAMSBURG-EAST,1,0.02
+least_squares,numpy,undervalued,JACKSON HEIGHTS,1,0.02
+least_squares,numpy,undervalued,PROSPECT HEIGHTS,1,0.02
+least_squares,numpy,undervalued,TRAVIS,1,0.02
+least_squares,numpy,undervalued,FLATIRON,1,0.02
+least_squares,numpy,undervalued,CLOVE LAKES,1,0.02
+least_squares,numpy,undervalued,SHEEPSHEAD BAY,1,0.02
+least_squares,numpy,undervalued,UPPER EAST SIDE (79-96),1,0.02
+least_squares,numpy,undervalued,KENSINGTON,1,0.02
+least_squares,numpy,undervalued,KINGSBRIDGE HTS/UNIV HTS,1,0.02
+least_squares,numpy,undervalued,RIVERDALE,1,0.02
+least_squares,numpy,undervalued,NEW SPRINGVILLE,1,0.02
+least_squares,numpy,undervalued,PORT IVORY,1,0.02
+least_squares,numpy,undervalued,GREENWICH VILLAGE-CENTRAL,1,0.02
+least_squares,numpy,undervalued,CHELSEA,1,0.02
+least_squares,numpy,overvalued,JAVITS CENTER,5,0.1
+least_squares,numpy,overvalued,MIDTOWN CBD,3,0.06
+least_squares,numpy,overvalued,FINANCIAL,3,0.06
+least_squares,numpy,overvalued,KIPS BAY,2,0.04
+least_squares,numpy,overvalued,WILLIAMSBURG-NORTH,2,0.04
+least_squares,numpy,overvalued,MIDTOWN WEST,2,0.04
+least_squares,numpy,overvalued,LONG ISLAND CITY,2,0.04
+least_squares,numpy,overvalued,SOHO,2,0.04
+least_squares,numpy,overvalued,FASHION,2,0.04
+least_squares,numpy,overvalued,UPPER WEST SIDE (59-79),2,0.04
+least_squares,numpy,overvalued,CHELSEA,1,0.02
+least_squares,numpy,overvalued,GREENWICH VILLAGE-CENTRAL,1,0.02
+least_squares,numpy,overvalued,PORT IVORY,1,0.02
+least_squares,numpy,overvalued,NEW SPRINGVILLE,1,0.02
+least_squares,numpy,overvalued,RIVERDALE,1,0.02
+least_squares,numpy,overvalued,KINGSBRIDGE HTS/UNIV HTS,1,0.02
+least_squares,numpy,overvalued,KENSINGTON,1,0.02
+least_squares,numpy,overvalued,UPPER EAST SIDE (79-96),1,0.02
+least_squares,numpy,overvalued,SHEEPSHEAD BAY,1,0.02
+least_squares,numpy,overvalued,CLOVE LAKES,1,0.02
+least_squares,numpy,overvalued,FLATIRON,1,0.02
+least_squares,numpy,overvalued,TRAVIS,1,0.02
+least_squares,numpy,overvalued,PROSPECT HEIGHTS,1,0.02
+least_squares,numpy,overvalued,JACKSON HEIGHTS,1,0.02
+least_squares,numpy,overvalued,WILLIAMSBURG-EAST,1,0.02
+least_squares,numpy,overvalued,CROWN HEIGHTS,1,0.02
+least_squares,numpy,overvalued,HARLEM-WEST,1,0.02
+least_squares,numpy,overvalued,KINGSBRIDGE/JEROME PARK,1,0.02
+least_squares,numpy,overvalued,RED HOOK,1,0.02
+least_squares,numpy,overvalued,CIVIC CENTER,1,0.02
+least_squares,numpy,overvalued,REGO PARK,1,0.02
+least_squares,numpy,overvalued,UPPER EAST SIDE (59-79),1,0.02
+least_squares,numpy,overvalued,WOODROW,1,0.02
+least_squares,numpy,overvalued,EAST NEW YORK,1,0.02
+least_squares,numpy,overvalued,BROWNSVILLE,1,0.02
+ridge_alpha_100,numpy,undervalued,JAVITS CENTER,5,0.1
+ridge_alpha_100,numpy,undervalued,FINANCIAL,3,0.06
+ridge_alpha_100,numpy,undervalued,SOHO,3,0.06
+ridge_alpha_100,numpy,undervalued,FASHION,2,0.04
+ridge_alpha_100,numpy,undervalued,WILLIAMSBURG-NORTH,2,0.04
+ridge_alpha_100,numpy,undervalued,UPPER WEST SIDE (59-79),2,0.04
+ridge_alpha_100,numpy,undervalued,MIDTOWN WEST,2,0.04
+ridge_alpha_100,numpy,undervalued,LONG ISLAND CITY,2,0.04
+ridge_alpha_100,numpy,undervalued,KIPS BAY,2,0.04
+ridge_alpha_100,numpy,undervalued,MIDTOWN CBD,2,0.04
+ridge_alpha_100,numpy,undervalued,EAST NEW YORK,1,0.02
+ridge_alpha_100,numpy,undervalued,BROWNSVILLE,1,0.02
+ridge_alpha_100,numpy,undervalued,WOODROW,1,0.02
+ridge_alpha_100,numpy,undervalued,UPPER EAST SIDE (59-79),1,0.02
+ridge_alpha_100,numpy,undervalued,REGO PARK,1,0.02
+ridge_alpha_100,numpy,undervalued,CIVIC CENTER,1,0.02
+ridge_alpha_100,numpy,undervalued,HARLEM-WEST,1,0.02
+ridge_alpha_100,numpy,undervalued,HARLEM-CENTRAL,1,0.02
+ridge_alpha_100,numpy,undervalued,HARLEM-UPPER,1,0.02
+ridge_alpha_100,numpy,undervalued,CROWN HEIGHTS,1,0.02
+ridge_alpha_100,numpy,undervalued,WILLIAMSBURG-EAST,1,0.02
+ridge_alpha_100,numpy,undervalued,JACKSON HEIGHTS,1,0.02
+ridge_alpha_100,numpy,undervalued,PROSPECT HEIGHTS,1,0.02
+ridge_alpha_100,numpy,undervalued,TRAVIS,1,0.02
+ridge_alpha_100,numpy,undervalued,CLOVE LAKES,1,0.02
+ridge_alpha_100,numpy,undervalued,SHEEPSHEAD BAY,1,0.02
+ridge_alpha_100,numpy,undervalued,UPPER EAST SIDE (79-96),1,0.02
+ridge_alpha_100,numpy,undervalued,FLATIRON,1,0.02
+ridge_alpha_100,numpy,undervalued,NEW SPRINGVILLE,1,0.02
+ridge_alpha_100,numpy,undervalued,KENSINGTON,1,0.02
+ridge_alpha_100,numpy,undervalued,PORT IVORY,1,0.02
+ridge_alpha_100,numpy,undervalued,KINGSBRIDGE HTS/UNIV HTS,1,0.02
+ridge_alpha_100,numpy,undervalued,RIVERDALE,1,0.02
+ridge_alpha_100,numpy,undervalued,GREENWICH VILLAGE-CENTRAL,1,0.02
+ridge_alpha_100,numpy,undervalued,CHELSEA,1,0.02
+ridge_alpha_100,numpy,overvalued,JAVITS CENTER,5,0.1
+ridge_alpha_100,numpy,overvalued,FINANCIAL,3,0.06
+ridge_alpha_100,numpy,overvalued,SOHO,3,0.06
+ridge_alpha_100,numpy,overvalued,MIDTOWN CBD,2,0.04
+ridge_alpha_100,numpy,overvalued,KIPS BAY,2,0.04
+ridge_alpha_100,numpy,overvalued,WILLIAMSBURG-NORTH,2,0.04
+ridge_alpha_100,numpy,overvalued,MIDTOWN WEST,2,0.04
+ridge_alpha_100,numpy,overvalued,LONG ISLAND CITY,2,0.04
+ridge_alpha_100,numpy,overvalued,FASHION,2,0.04
+ridge_alpha_100,numpy,overvalued,UPPER WEST SIDE (59-79),2,0.04
+ridge_alpha_100,numpy,overvalued,CHELSEA,1,0.02
+ridge_alpha_100,numpy,overvalued,GREENWICH VILLAGE-CENTRAL,1,0.02
+ridge_alpha_100,numpy,overvalued,RIVERDALE,1,0.02
+ridge_alpha_100,numpy,overvalued,KINGSBRIDGE HTS/UNIV HTS,1,0.02
+ridge_alpha_100,numpy,overvalued,PORT IVORY,1,0.02
+ridge_alpha_100,numpy,overvalued,KENSINGTON,1,0.02
+ridge_alpha_100,numpy,overvalued,NEW SPRINGVILLE,1,0.02
+ridge_alpha_100,numpy,overvalued,FLATIRON,1,0.02
+ridge_alpha_100,numpy,overvalued,UPPER EAST SIDE (79-96),1,0.02
+ridge_alpha_100,numpy,overvalued,SHEEPSHEAD BAY,1,0.02
+ridge_alpha_100,numpy,overvalued,CLOVE LAKES,1,0.02
+ridge_alpha_100,numpy,overvalued,TRAVIS,1,0.02
+ridge_alpha_100,numpy,overvalued,PROSPECT HEIGHTS,1,0.02
+ridge_alpha_100,numpy,overvalued,JACKSON HEIGHTS,1,0.02
+ridge_alpha_100,numpy,overvalued,WILLIAMSBURG-EAST,1,0.02
+ridge_alpha_100,numpy,overvalued,CROWN HEIGHTS,1,0.02
+ridge_alpha_100,numpy,overvalued,HARLEM-UPPER,1,0.02
+ridge_alpha_100,numpy,overvalued,HARLEM-CENTRAL,1,0.02
+ridge_alpha_100,numpy,overvalued,HARLEM-WEST,1,0.02
+ridge_alpha_100,numpy,overvalued,CIVIC CENTER,1,0.02
+ridge_alpha_100,numpy,overvalued,REGO PARK,1,0.02
+ridge_alpha_100,numpy,overvalued,UPPER EAST SIDE (59-79),1,0.02
+ridge_alpha_100,numpy,overvalued,WOODROW,1,0.02
+ridge_alpha_100,numpy,overvalued,BROWNSVILLE,1,0.02
+ridge_alpha_100,numpy,overvalued,EAST NEW YORK,1,0.02
+ridge_alpha_1000,numpy,undervalued,JAVITS CENTER,5,0.1
+ridge_alpha_1000,numpy,undervalued,FINANCIAL,3,0.06
+ridge_alpha_1000,numpy,undervalued,SOHO,3,0.06
+ridge_alpha_1000,numpy,undervalued,KIPS BAY,3,0.06
+ridge_alpha_1000,numpy,undervalued,WILLIAMSBURG-NORTH,2,0.04
+ridge_alpha_1000,numpy,undervalued,FASHION,2,0.04
+ridge_alpha_1000,numpy,undervalued,UPPER WEST SIDE (59-79),2,0.04
+ridge_alpha_1000,numpy,undervalued,LONG ISLAND CITY,2,0.04
+ridge_alpha_1000,numpy,undervalued,CHELSEA,2,0.04
+ridge_alpha_1000,numpy,undervalued,MIDTOWN CBD,2,0.04
+ridge_alpha_1000,numpy,undervalued,EAST NEW YORK,1,0.02
+ridge_alpha_1000,numpy,undervalued,MIDTOWN WEST,1,0.02
+ridge_alpha_1000,numpy,undervalued,BROWNSVILLE,1,0.02
+ridge_alpha_1000,numpy,undervalued,CYPRESS HILLS,1,0.02
+ridge_alpha_1000,numpy,undervalued,UPPER EAST SIDE (59-79),1,0.02
+ridge_alpha_1000,numpy,undervalued,WILLIAMSBRIDGE,1,0.02
+ridge_alpha_1000,numpy,undervalued,NAVY YARD,1,0.02
+ridge_alpha_1000,numpy,undervalued,HARLEM-WEST,1,0.02
+ridge_alpha_1000,numpy,undervalued,HARLEM-EAST,1,0.02
+ridge_alpha_1000,numpy,undervalued,TRAVIS,1,0.02
+ridge_alpha_1000,numpy,undervalued,CROWN HEIGHTS,1,0.02
+ridge_alpha_1000,numpy,undervalued,CLOVE LAKES,1,0.02
+ridge_alpha_1000,numpy,undervalued,WILLIAMSBURG-EAST,1,0.02
+ridge_alpha_1000,numpy,undervalued,REGO PARK,1,0.02
+ridge_alpha_1000,numpy,undervalued,NEW SPRINGVILLE,1,0.02
+ridge_alpha_1000,numpy,undervalued,PORT IVORY,1,0.02
+ridge_alpha_1000,numpy,undervalued,PROSPECT HEIGHTS,1,0.02
+ridge_alpha_1000,numpy,undervalued,SHEEPSHEAD BAY,1,0.02
+ridge_alpha_1000,numpy,undervalued,UPPER EAST SIDE (79-96),1,0.02
+ridge_alpha_1000,numpy,undervalued,FLATIRON,1,0.02
+ridge_alpha_1000,numpy,undervalued,KENSINGTON,1,0.02
+ridge_alpha_1000,numpy,undervalued,RIVERDALE,1,0.02
+ridge_alpha_1000,numpy,undervalued,KINGSBRIDGE HTS/UNIV HTS,1,0.02
+ridge_alpha_1000,numpy,undervalued,GREENWICH VILLAGE-CENTRAL,1,0.02
+ridge_alpha_1000,numpy,overvalued,JAVITS CENTER,5,0.1
+ridge_alpha_1000,numpy,overvalued,KIPS BAY,3,0.06
+ridge_alpha_1000,numpy,overvalued,FINANCIAL,3,0.06
+ridge_alpha_1000,numpy,overvalued,SOHO,3,0.06
+ridge_alpha_1000,numpy,overvalued,MIDTOWN CBD,2,0.04
+ridge_alpha_1000,numpy,overvalued,CHELSEA,2,0.04
+ridge_alpha_1000,numpy,overvalued,WILLIAMSBURG-NORTH,2,0.04
+ridge_alpha_1000,numpy,overvalued,UPPER WEST SIDE (59-79),2,0.04
+ridge_alpha_1000,numpy,overvalued,LONG ISLAND CITY,2,0.04
+ridge_alpha_1000,numpy,overvalued,FASHION,2,0.04
+ridge_alpha_1000,numpy,overvalued,GREENWICH VILLAGE-CENTRAL,1,0.02
+ridge_alpha_1000,numpy,overvalued,KINGSBRIDGE HTS/UNIV HTS,1,0.02
+ridge_alpha_1000,numpy,overvalued,RIVERDALE,1,0.02
+ridge_alpha_1000,numpy,overvalued,KENSINGTON,1,0.02
+ridge_alpha_1000,numpy,overvalued,FLATIRON,1,0.02
+ridge_alpha_1000,numpy,overvalued,UPPER EAST SIDE (79-96),1,0.02
+ridge_alpha_1000,numpy,overvalued,SHEEPSHEAD BAY,1,0.02
+ridge_alpha_1000,numpy,overvalued,PROSPECT HEIGHTS,1,0.02
+ridge_alpha_1000,numpy,overvalued,PORT IVORY,1,0.02
+ridge_alpha_1000,numpy,overvalued,NEW SPRINGVILLE,1,0.02
+ridge_alpha_1000,numpy,overvalued,REGO PARK,1,0.02
+ridge_alpha_1000,numpy,overvalued,WILLIAMSBURG-EAST,1,0.02
+ridge_alpha_1000,numpy,overvalued,CLOVE LAKES,1,0.02
+ridge_alpha_1000,numpy,overvalued,CROWN HEIGHTS,1,0.02
+ridge_alpha_1000,numpy,overvalued,TRAVIS,1,0.02
+ridge_alpha_1000,numpy,overvalued,HARLEM-EAST,1,0.02
+ridge_alpha_1000,numpy,overvalued,HARLEM-WEST,1,0.02
+ridge_alpha_1000,numpy,overvalued,NAVY YARD,1,0.02
+ridge_alpha_1000,numpy,overvalued,WILLIAMSBRIDGE,1,0.02
+ridge_alpha_1000,numpy,overvalued,UPPER EAST SIDE (59-79),1,0.02
+ridge_alpha_1000,numpy,overvalued,CYPRESS HILLS,1,0.02
+ridge_alpha_1000,numpy,overvalued,BROWNSVILLE,1,0.02
+ridge_alpha_1000,numpy,overvalued,MIDTOWN WEST,1,0.02
+ridge_alpha_1000,numpy,overvalued,EAST NEW YORK,1,0.02
+ridge_alpha_10000,numpy,undervalued,JAVITS CENTER,5,0.1
+ridge_alpha_10000,numpy,undervalued,FINANCIAL,3,0.06
+ridge_alpha_10000,numpy,undervalued,DOWNTOWN-METROTECH,3,0.06
+ridge_alpha_10000,numpy,undervalued,LONG ISLAND CITY,3,0.06
+ridge_alpha_10000,numpy,undervalued,KIPS BAY,3,0.06
+ridge_alpha_10000,numpy,undervalued,WILLIAMSBURG-NORTH,2,0.04
+ridge_alpha_10000,numpy,undervalued,CHELSEA,2,0.04
+ridge_alpha_10000,numpy,undervalued,MOUNT HOPE/MOUNT EDEN,2,0.04
+ridge_alpha_10000,numpy,undervalued,MIDTOWN CBD,2,0.04
+ridge_alpha_10000,numpy,undervalued,EAST NEW YORK,1,0.02
+ridge_alpha_10000,numpy,undervalued,MIDTOWN WEST,1,0.02
+ridge_alpha_10000,numpy,undervalued,CYPRESS HILLS,1,0.02
+ridge_alpha_10000,numpy,undervalued,WILLIAMSBRIDGE,1,0.02
+ridge_alpha_10000,numpy,undervalued,HARLEM-EAST,1,0.02
+ridge_alpha_10000,numpy,undervalued,UPPER WEST SIDE (59-79),1,0.02
+ridge_alpha_10000,numpy,undervalued,NAVY YARD,1,0.02
+ridge_alpha_10000,numpy,undervalued,HARLEM-WEST,1,0.02
+ridge_alpha_10000,numpy,undervalued,UPPER EAST SIDE (59-79),1,0.02
+ridge_alpha_10000,numpy,undervalued,WILLIAMSBURG-SOUTH,1,0.02
+ridge_alpha_10000,numpy,undervalued,CASTLE HILL/UNIONPORT,1,0.02
+ridge_alpha_10000,numpy,undervalued,HARLEM-UPPER,1,0.02
+ridge_alpha_10000,numpy,undervalued,SOHO,1,0.02
+ridge_alpha_10000,numpy,undervalued,FLATIRON,1,0.02
+ridge_alpha_10000,numpy,undervalued,WILLIAMSBURG-EAST,1,0.02
+ridge_alpha_10000,numpy,undervalued,SHEEPSHEAD BAY,1,0.02
+ridge_alpha_10000,numpy,undervalued,UPPER EAST SIDE (79-96),1,0.02
+ridge_alpha_10000,numpy,undervalued,PROSPECT HEIGHTS,1,0.02
+ridge_alpha_10000,numpy,undervalued,CROWN HEIGHTS,1,0.02
+ridge_alpha_10000,numpy,undervalued,RED HOOK,1,0.02
+ridge_alpha_10000,numpy,undervalued,KENSINGTON,1,0.02
+ridge_alpha_10000,numpy,undervalued,REGO PARK,1,0.02
+ridge_alpha_10000,numpy,undervalued,RIVERDALE,1,0.02
+ridge_alpha_10000,numpy,undervalued,KINGSBRIDGE HTS/UNIV HTS,1,0.02
+ridge_alpha_10000,numpy,undervalued,GREENWICH VILLAGE-CENTRAL,1,0.02
+ridge_alpha_10000,numpy,overvalued,JAVITS CENTER,5,0.1
+ridge_alpha_10000,numpy,overvalued,KIPS BAY,3,0.06
+ridge_alpha_10000,numpy,overvalued,FINANCIAL,3,0.06
+ridge_alpha_10000,numpy,overvalued,DOWNTOWN-METROTECH,3,0.06
+ridge_alpha_10000,numpy,overvalued,LONG ISLAND CITY,3,0.06
+ridge_alpha_10000,numpy,overvalued,MIDTOWN CBD,2,0.04
+ridge_alpha_10000,numpy,overvalued,CHELSEA,2,0.04
+ridge_alpha_10000,numpy,overvalued,WILLIAMSBURG-NORTH,2,0.04
+ridge_alpha_10000,numpy,overvalued,MOUNT HOPE/MOUNT EDEN,2,0.04
+ridge_alpha_10000,numpy,overvalued,GREENWICH VILLAGE-CENTRAL,1,0.02
+ridge_alpha_10000,numpy,overvalued,KINGSBRIDGE HTS/UNIV HTS,1,0.02
+ridge_alpha_10000,numpy,overvalued,RIVERDALE,1,0.02
+ridge_alpha_10000,numpy,overvalued,REGO PARK,1,0.02
+ridge_alpha_10000,numpy,overvalued,KENSINGTON,1,0.02
+ridge_alpha_10000,numpy,overvalued,RED HOOK,1,0.02
+ridge_alpha_10000,numpy,overvalued,CROWN HEIGHTS,1,0.02
+ridge_alpha_10000,numpy,overvalued,PROSPECT HEIGHTS,1,0.02
+ridge_alpha_10000,numpy,overvalued,UPPER EAST SIDE (79-96),1,0.02
+ridge_alpha_10000,numpy,overvalued,SHEEPSHEAD BAY,1,0.02
+ridge_alpha_10000,numpy,overvalued,WILLIAMSBURG-EAST,1,0.02
+ridge_alpha_10000,numpy,overvalued,FLATIRON,1,0.02
+ridge_alpha_10000,numpy,overvalued,SOHO,1,0.02
+ridge_alpha_10000,numpy,overvalued,HARLEM-UPPER,1,0.02
+ridge_alpha_10000,numpy,overvalued,CASTLE HILL/UNIONPORT,1,0.02
+ridge_alpha_10000,numpy,overvalued,WILLIAMSBURG-SOUTH,1,0.02
+ridge_alpha_10000,numpy,overvalued,UPPER EAST SIDE (59-79),1,0.02
+ridge_alpha_10000,numpy,overvalued,HARLEM-WEST,1,0.02
+ridge_alpha_10000,numpy,overvalued,NAVY YARD,1,0.02
+ridge_alpha_10000,numpy,overvalued,UPPER WEST SIDE (59-79),1,0.02
+ridge_alpha_10000,numpy,overvalued,HARLEM-EAST,1,0.02
+ridge_alpha_10000,numpy,overvalued,WILLIAMSBRIDGE,1,0.02
+ridge_alpha_10000,numpy,overvalued,CYPRESS HILLS,1,0.02
+ridge_alpha_10000,numpy,overvalued,MIDTOWN WEST,1,0.02
+ridge_alpha_10000,numpy,overvalued,EAST NEW YORK,1,0.02
+ridge_alpha_100000,numpy,undervalued,JAVITS CENTER,5,0.1
+ridge_alpha_100000,numpy,undervalued,KIPS BAY,4,0.08
+ridge_alpha_100000,numpy,undervalued,MOUNT HOPE/MOUNT EDEN,3,0.06
+ridge_alpha_100000,numpy,undervalued,FASHION,3,0.06
+ridge_alpha_100000,numpy,undervalued,MIDTOWN CBD,3,0.06
+ridge_alpha_100000,numpy,undervalued,UPPER EAST SIDE (59-79),2,0.04
+ridge_alpha_100000,numpy,undervalued,MIDTOWN WEST,2,0.04
+ridge_alpha_100000,numpy,undervalued,DOWNTOWN-METROTECH,2,0.04
+ridge_alpha_100000,numpy,undervalued,ASTORIA,1,0.02
+ridge_alpha_100000,numpy,undervalued,MOTT HAVEN/PORT MORRIS,1,0.02
+ridge_alpha_100000,numpy,undervalued,ELMHURST,1,0.02
+ridge_alpha_100000,numpy,undervalued,FLATBUSH-LEFFERTS GARDEN,1,0.02
+ridge_alpha_100000,numpy,undervalued,HARLEM-EAST,1,0.02
+ridge_alpha_100000,numpy,undervalued,FLATBUSH-NORTH,1,0.02
+ridge_alpha_100000,numpy,undervalued,HARLEM-CENTRAL,1,0.02
+ridge_alpha_100000,numpy,undervalued,WILLIAMSBURG-SOUTH,1,0.02
+ridge_alpha_100000,numpy,undervalued,KENSINGTON,1,0.02
+ridge_alpha_100000,numpy,undervalued,LONG ISLAND CITY,1,0.02
+ridge_alpha_100000,numpy,undervalued,WILLIAMSBURG-EAST,1,0.02
+ridge_alpha_100000,numpy,undervalued,SOHO,1,0.02
+ridge_alpha_100000,numpy,undervalued,HARLEM-UPPER,1,0.02
+ridge_alpha_100000,numpy,undervalued,SHEEPSHEAD BAY,1,0.02
+ridge_alpha_100000,numpy,undervalued,CASTLE HILL/UNIONPORT,1,0.02
+ridge_alpha_100000,numpy,undervalued,PROSPECT HEIGHTS,1,0.02
+ridge_alpha_100000,numpy,undervalued,UPPER EAST SIDE (79-96),1,0.02
+ridge_alpha_100000,numpy,undervalued,CHELSEA,1,0.02
+ridge_alpha_100000,numpy,undervalued,RED HOOK,1,0.02
+ridge_alpha_100000,numpy,undervalued,CROWN HEIGHTS,1,0.02
+ridge_alpha_100000,numpy,undervalued,WILLIAMSBURG-NORTH,1,0.02
+ridge_alpha_100000,numpy,undervalued,RIVERDALE,1,0.02
+ridge_alpha_100000,numpy,undervalued,KINGSBRIDGE HTS/UNIV HTS,1,0.02
+ridge_alpha_100000,numpy,undervalued,REGO PARK,1,0.02
+ridge_alpha_100000,numpy,undervalued,GREENWICH VILLAGE-CENTRAL,1,0.02
+ridge_alpha_100000,numpy,undervalued,FINANCIAL,1,0.02
+ridge_alpha_100000,numpy,overvalued,JAVITS CENTER,5,0.1
+ridge_alpha_100000,numpy,overvalued,KIPS BAY,4,0.08
+ridge_alpha_100000,numpy,overvalued,MIDTOWN CBD,3,0.06
+ridge_alpha_100000,numpy,overvalued,FASHION,3,0.06
+ridge_alpha_100000,numpy,overvalued,MOUNT HOPE/MOUNT EDEN,3,0.06
+ridge_alpha_100000,numpy,overvalued,DOWNTOWN-METROTECH,2,0.04
+ridge_alpha_100000,numpy,overvalued,MIDTOWN WEST,2,0.04
+ridge_alpha_100000,numpy,overvalued,UPPER EAST SIDE (59-79),2,0.04
+ridge_alpha_100000,numpy,overvalued,FINANCIAL,1,0.02
+ridge_alpha_100000,numpy,overvalued,GREENWICH VILLAGE-CENTRAL,1,0.02
+ridge_alpha_100000,numpy,overvalued,REGO PARK,1,0.02
+ridge_alpha_100000,numpy,overvalued,KINGSBRIDGE HTS/UNIV HTS,1,0.02
+ridge_alpha_100000,numpy,overvalued,RIVERDALE,1,0.02
+ridge_alpha_100000,numpy,overvalued,WILLIAMSBURG-NORTH,1,0.02
+ridge_alpha_100000,numpy,overvalued,CROWN HEIGHTS,1,0.02
+ridge_alpha_100000,numpy,overvalued,RED HOOK,1,0.02
+ridge_alpha_100000,numpy,overvalued,CHELSEA,1,0.02
+ridge_alpha_100000,numpy,overvalued,UPPER EAST SIDE (79-96),1,0.02
+ridge_alpha_100000,numpy,overvalued,PROSPECT HEIGHTS,1,0.02
+ridge_alpha_100000,numpy,overvalued,CASTLE HILL/UNIONPORT,1,0.02
+ridge_alpha_100000,numpy,overvalued,SHEEPSHEAD BAY,1,0.02
+ridge_alpha_100000,numpy,overvalued,HARLEM-UPPER,1,0.02
+ridge_alpha_100000,numpy,overvalued,SOHO,1,0.02
+ridge_alpha_100000,numpy,overvalued,WILLIAMSBURG-EAST,1,0.02
+ridge_alpha_100000,numpy,overvalued,LONG ISLAND CITY,1,0.02
+ridge_alpha_100000,numpy,overvalued,KENSINGTON,1,0.02
+ridge_alpha_100000,numpy,overvalued,WILLIAMSBURG-SOUTH,1,0.02
+ridge_alpha_100000,numpy,overvalued,HARLEM-CENTRAL,1,0.02
+ridge_alpha_100000,numpy,overvalued,FLATBUSH-NORTH,1,0.02
+ridge_alpha_100000,numpy,overvalued,HARLEM-EAST,1,0.02
+ridge_alpha_100000,numpy,overvalued,FLATBUSH-LEFFERTS GARDEN,1,0.02
+ridge_alpha_100000,numpy,overvalued,ELMHURST,1,0.02
+ridge_alpha_100000,numpy,overvalued,MOTT HAVEN/PORT MORRIS,1,0.02
+ridge_alpha_100000,numpy,overvalued,ASTORIA,1,0.02
