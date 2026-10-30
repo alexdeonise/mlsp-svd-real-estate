@@ -34,10 +34,14 @@ Nu ai nevoie de GPU. Totul rulează pe laptop.
 src/build_matrix.py      curatare + one-hot + standardizare, exact ca in raportul Mariei -> A (m x n)
 src/validate_svd.py      compara un SVD custom cu numpy: reconstructie, ortogonalitate, timp      (Maria)
 src/rank_k.py            energia retinuta la k = 5/10/20/50, pragurile 90% / 95%, custom vs numpy  (Maria)
-src/regression.py        least squares + ridge cu evaluare 80/20 train/test, validare pentru alpha (Maria)
+src/regression.py        least squares + ridge: alpha ales pe validare, refit pe    (Maria)
+                         train+val, evaluare o singura data pe test
 src/anomaly_detectors.py trei scoruri: SVD reconstruction, K-Means distance, Isolation Forest    (David)
 src/agreement.py         Jaccard intre liste, cate proprietati sunt marcate de toate metodele    (David)
-scripts/compare_solvers.py  validarea M1: aceleasi tolerante, custom vs numpy pe ambele matrici
+scripts/compare_solvers.py     validarea M1: aceleasi tolerante, custom vs numpy pe ambele matrici
+scripts/regression_seed_stability.py  robustetea R² la alegerea seed-ului splitului
+tests/                 teste pytest (SVD, convergenta, regresie), rulate in CI
+.github/workflows/     GitHub Actions: pytest pe fiecare push / PR
 results/                 CSV-uri si liste de proprietati
 figures/                 figurile, generate din scripturi
 ```
@@ -93,18 +97,30 @@ Setul final de date conține 28.380 de tranzacții și 406 caracteristici.
 Tranzacțiile cu prețul de vânzare sub 10.000 USD sunt eliminate în mod
 consistent înainte de construirea matricelor folosite în toate experimentele.
 
-- Rangul numeric al matricei complete: 387 (numpy) / 393 (custom — cele 6
-  direcții în plus sunt zgomot de la formarea AᵀA, vezi
+- Rangul numeric al matricei complete: **387 pentru ambele solver-e** la
+  pragul comun rtol = 1e-6 (deasupra podelei de zgomot a metodei Gram;
+  la convenția NumPy custom raportează 393 — vezi
   `docs/reproductibilitate-numerica.md`)
 - Rank-k, matrice completă: k90 = 319, k95 = 343; energia la k=5 este
   **3.6%**, la k=50 este 22.6% (ambele solver-e coincid până la ~1e-15)
 - Rank-k, doar variabile numerice: k90 = k95 = 4; energia la k=5 este 100%
 - Regresie cu evaluare corectă train/test (80/20, seed 42, standardizare
-  fitată doar pe train, α Ridge ales pe validare):
-  - preț brut, least squares: test R² ≈ 0.459 (in-sample era 0.727 — gap
+  fitată doar pe train, **α Ridge selectat exclusiv pe validare**, model
+  final reantrenat pe train+val și evaluat o singură dată pe test):
+  - preț brut, least squares: test R² ≈ 0.541 (in-sample era 0.727 — gap
     de generalizare, nu de calcul)
-  - log(1+preț), Ridge α=1000 (ales pe validare): test R² ≈ 0.933,
-    RMSE ≈ 8.06M USD
+  - log(1+preț), Ridge α=1000 (ales pe validare): test R² ≈ 0.948,
+    RMSE ≈ 7.05M USD
+- Convergența QR verificată pe matricea reală: 0 deflații forțate,
+  rezidu propriu ‖B − VDVᵀ‖/‖B‖ ≈ 7e-12 (documentat și instrumentat în
+  `info`)
+- 29 de teste pytest (`tests/`) — SVD, convergență, regresie — rulate și
+  în CI (`.github/workflows/tests.yml`)
+- Robustețe la seed (`results/regression_seed_stability.csv`, 4 seed-uri):
+  R² pe test pentru log-Ridge (α ales pe validare) variază între 0.31 și
+  0.95 (media 0.72) — seed 42 (R² = 0.948) este cazul favorabil. R² pe
+  test e dominat de cum cad în split proprietățile foarte scumpe, deci
+  cifra de 0.948 trebuie citită cu această variație alături.
 
 ### Solver custom vs numpy (M1)
 
@@ -116,9 +132,10 @@ cu `python scripts/compare_solvers.py`.
 
 ### De ce este R² catastrofal de mic pentru log(1+preț) fără regularizare?
 
-Least squares pe ținta logaritmică, evaluat corect pe test, dă R² ≈ −379.
-Cauza nu e calculul, ci transformarea inversă: erori mici în spațiul log
-devin predicții exponențiale. Diagnosticul din
+Least squares pe ținta logaritmică, evaluat corect pe test, dă R² ≈ −13.8
+(model final reantrenat pe train+val). Cauza nu e calculul, ci
+transformarea inversă: erori mici în spațiul log devin predicții
+exponențiale. Diagnosticul din
 `results/log_target_diagnostics.csv`:
 
 - predicția maximă pe test: **47.8 miliarde USD** (maximul real: 2.2 miliarde);
@@ -127,7 +144,7 @@ devin predicții exponențiale. Diagnosticul din
   distrus de un număr de puncte care se numără pe degete.
 
 Ridge comprimă exact aceste direcții explozive: la α=1000 predicția maximă
-scade la 1.9 miliarde USD și R² pe test ajunge la 0.933. Figura
+scade la 1.9 miliarde USD și R² pe test ajunge la 0.948. Figura
 `figures/regression_log_ls_investigation.png` arată predicția de 47.8
 miliarde și, în același timp, că reziduurile centrale 99% sunt strânse
 în jurul zero — modelul e bun tipic, dar expm1 amplifică catastrofal

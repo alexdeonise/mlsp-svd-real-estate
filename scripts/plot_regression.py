@@ -35,7 +35,7 @@ METRICS = ["rmse", "mae", "r2"]
 TITLES = ["RMSE", "MAE", "R²"]
 
 
-def plot_metrics():
+def load_metrics():
     df = pd.read_csv(
         os.path.join(
             RESULTS,
@@ -43,21 +43,24 @@ def plot_metrics():
         )
     )
 
-    df = df[
+    return df[
         (df["solver"] == "custom")
-        & (df["split"] == "test")
+        & (df["fit_split"] == "trainval")
     ]
 
+
+def plot_metrics():
+    df = load_metrics()
+
+    df = df[df["split"] == "test"]
+
     fig, axes = plt.subplots(
-        1,
+        2,
         3,
-        figsize=(15, 4.5)
+        figsize=(16, 8)
     )
 
-    for target, color in [
-        ("raw", "steelblue"),
-        ("log", "darkorange"),
-    ]:
+    for row, target in enumerate(["raw", "log"]):
         sub = df[
             df["target"] == target
         ]
@@ -65,29 +68,24 @@ def plot_metrics():
         labels = sub["model"].tolist()
 
         for i, metric in enumerate(METRICS):
-            axes[i].bar(
+            axes[row][i].bar(
                 labels,
                 sub[metric],
-                alpha=0.6,
-                label=target,
-                color=color,
+                color="steelblue",
             )
 
-    for i, metric in enumerate(METRICS):
-        axes[i].set_title(
-            f"{TITLES[i]} by model (test)"
-        )
+            axes[row][i].set_title(
+                f"{TITLES[i]} — target {target} (test)"
+            )
 
-        axes[i].set_ylabel(
-            TITLES[i]
-        )
+            axes[row][i].set_ylabel(
+                TITLES[i]
+            )
 
-        axes[i].tick_params(
-            axis="x",
-            rotation=45,
-        )
-
-    axes[0].legend()
+            axes[row][i].tick_params(
+                axis="x",
+                rotation=30,
+            )
 
     fig.tight_layout()
 
@@ -108,20 +106,7 @@ def plot_metrics():
 
 
 def plot_train_vs_test():
-    df = pd.read_csv(
-        os.path.join(
-            RESULTS,
-            "regression_tt_metrics.csv"
-        )
-    )
-
-    df = df[df["solver"] == "custom"]
-
-    models = df["model"].unique().tolist()
-
-    x = range(len(models))
-
-    width = 0.35
+    df = load_metrics()
 
     fig, axes = plt.subplots(
         2,
@@ -129,11 +114,17 @@ def plot_train_vs_test():
         figsize=(16, 8)
     )
 
+    width = 0.35
+
     for row, target in enumerate(["raw", "log"]):
         sub = df[df["target"] == target]
 
+        models = sub["model"].unique().tolist()
+
+        x = range(len(models))
+
         train = sub[
-            sub["split"] == "train"
+            sub["split"] == "trainval"
         ].set_index("model")
 
         test = sub[
@@ -151,7 +142,7 @@ def plot_train_vs_test():
                     for m in models
                 ],
                 width,
-                label="train",
+                label="train+val (in-sample)",
             )
 
             axes[row][i].bar(

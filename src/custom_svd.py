@@ -289,6 +289,14 @@ def QR_iteration(A, Q, TOL=1e-6):
 
     max_total_iters = 5000
 
+    # Deflatii fortate: blocuri care nu au ajuns sub TOL in cele 10
+    # iteratii ale buclei interne si au fost dezmembrate prin zeroarea
+    # fortata a elementului subdiagonal. Sunt numarate separat, cu
+    # reziduul lor, ca sa nu fie confundate cu deflatiile prin convergenta.
+    n_forced = 0
+
+    max_forced_residual = 0.0
+
     while (
         active_end > 1
         and
@@ -358,6 +366,21 @@ def QR_iteration(A, Q, TOL=1e-6):
             block_iters += 1
 
         if active_end > 1:
+            residual = abs(
+                T[
+                    active_end - 1,
+                    active_end - 2
+                ]
+            )
+
+            if residual >= TOL:
+                n_forced += 1
+
+                max_forced_residual = max(
+                    max_forced_residual,
+                    residual,
+                )
+
             T[
                 active_end - 1,
                 active_end - 2
@@ -376,7 +399,27 @@ def QR_iteration(A, Q, TOL=1e-6):
 
     converged = active_end <= 1
 
-    return D, V, total_iters, converged
+    # Certificat de convergenta: (V, D) aproximeaza matricea originala A
+    # (in bazele ei, nu in baza tridiagonala — V acumuleaza si pe Q0).
+    # Mare => deflatii fortate cu reziduuri mari sau epuizarea buclei
+    # externe — ambele vizibile in stats.
+    R = A - V @ D @ V.T
+
+    denom = np.linalg.norm(A)
+
+    eigen_residual = (
+        float(np.linalg.norm(R) / denom)
+        if denom > 0
+        else float(np.linalg.norm(R))
+    )
+
+    stats = {
+        "n_forced_deflations": n_forced,
+        "max_forced_deflation_residual": max_forced_residual,
+        "eigen_residual": eigen_residual,
+    }
+
+    return D, V, total_iters, converged, stats
 
 
 def _complete_orthonormal_basis(U, constructed, missing, TOL=1e-12):
@@ -434,7 +477,7 @@ def SVD(A, TOL=1e-14, RTOL=1e-6, return_info=False):
 
     Q0, T0 = Tridiag_Householder(B)
 
-    D, V, qr_iters, qr_converged = QR_iteration(
+    D, V, qr_iters, qr_converged, qr_stats = QR_iteration(
         B,
         Q0
     )
@@ -551,6 +594,15 @@ def SVD(A, TOL=1e-14, RTOL=1e-6, return_info=False):
             "n_constructed_u": len(
                 constructed
             ),
+            "n_forced_deflations": qr_stats[
+                "n_forced_deflations"
+            ],
+            "max_forced_deflation_residual": qr_stats[
+                "max_forced_deflation_residual"
+            ],
+            "eigen_residual": qr_stats[
+                "eigen_residual"
+            ],
         }
 
         return U, S, V, info

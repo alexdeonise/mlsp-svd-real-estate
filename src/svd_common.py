@@ -178,6 +178,15 @@ def compute_svd(
             "n_small_zeroed": custom_info[
                 "n_small_zeroed"
             ],
+            "n_forced_deflations": custom_info[
+                "n_forced_deflations"
+            ],
+            "max_forced_deflation_residual": custom_info[
+                "max_forced_deflation_residual"
+            ],
+            "eigen_residual": custom_info[
+                "eigen_residual"
+            ],
         }
 
     U, s, Vt = _sort_descending(
@@ -316,6 +325,18 @@ def compute_svd(
         "converged": backend[
             "converged"
         ],
+        "n_forced_deflations": backend.get(
+            "n_forced_deflations",
+            0,
+        ),
+        "max_forced_deflation_residual": backend.get(
+            "max_forced_deflation_residual",
+            0.0,
+        ),
+        "eigen_residual": backend.get(
+            "eigen_residual",
+            None,
+        ),
         "seconds": time.time() - t0,
     }
 
@@ -372,6 +393,26 @@ def format_svd_info(
     ]:
         parts.append(
             f"small_zeroed={info['n_small_zeroed']}"
+        )
+
+    if info.get(
+        "n_forced_deflations"
+    ):
+        parts.append(
+            f"forced_defl={info['n_forced_deflations']}"
+        )
+
+        parts.append(
+            "max_forced_res="
+            f"{info['max_forced_deflation_residual']:.3e}"
+        )
+
+    if info.get(
+        "eigen_residual"
+    ) is not None:
+        parts.append(
+            "eigen_res="
+            f"{info['eigen_residual']:.3e}"
         )
 
     parts.append(

@@ -130,7 +130,13 @@ def main():
     ap.add_argument(
         "--rtol",
         type=float,
-        default=None,
+        default=1e-6,
+        help=(
+            "Prag comun de rang, deasupra etajului de zgomot al metodei "
+            "Gram (A^T A); fara el custom raporteaza 393 vs 387 pentru "
+            "numpy la convenția eps*max(m,n). Energia cumulativa NU "
+            "depinde de acest prag."
+        ),
     )
 
     ap.add_argument(
@@ -190,6 +196,8 @@ def main():
             "matrix": name,
             "m": A.shape[0],
             "n": A.shape[1],
+            "rtol": args.rtol,
+            "atol": args.atol,
         }
 
         for solver in solvers:
@@ -199,6 +207,10 @@ def main():
             info = data["info"]
 
             row[f"rank_{solver}"] = info["rank"]
+
+            row[f"cutoff_{solver}"] = (
+                f"{info['cutoff']:.3e}"
+            )
 
             row[f"k90_{solver}"] = first_k_at(
                 kept,

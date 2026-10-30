@@ -57,12 +57,22 @@ Householder în prealabil, `Tridiag_Householder`).
   Blocul trailing se desprinde și se iterează separat ( QR cu shift
   Wilkinson, `_qr_step_tridiag_explicit`).
 - **Bucla internă**: maximum **10 iterații QR per bloc**; la epuizare,
-  elementul subdiagonal este forțat la zero (deflație implicită) și blocul
-  se micșorează — garanie de terminare chiar dacă convergența e lentă.
+  elementul subdiagonal este forțat la zero (deflație forțată) și blocul
+  se micșorează — garanție de terminare chiar dacă convergența e lentă.
+  **Deflațiile forțate sunt numărate separat** (`info["n_forced_deflations"]`,
+  cu `info["max_forced_deflation_residual"]`), ca să nu fie confundate cu
+  deflațiile prin convergență.
 - **Bucla externă**: maximum **5000 iterații totale** (`max_total_iters`);
   flagul `converged` raportat în `info` spune dacă s-a ajuns la matrice
-  diagonală înainte de limită. Pe matricea reală: 535 de iterații,
-  converged=True.
+  diagonală înainte de limită.
+- **Certificat de convergență**: după bucle se măsoară
+  `eigen_residual = ‖B − V D Vᵀ‖_F / ‖B‖_F` — reziduul efectiv al perechii
+  (valori proprii, vectori proprii), în baza originală (nu în cea
+  tridiagonală). Pe matricea reală: **0 deflații forțate**,
+  `eigen_residual` = 7.1e-12 (A completă, 535 iterații) și 9.6e-12
+  (A numerică) — convergență curată; calea de deflație forțată nu se
+  activează pe datele noastre, dar e instrumentată și testată (pytest)
+  pentru cazurile dificile.
 - Acuratețea absolută a valorilor proprii e astfel ~1e-6 · |λ|max, ceea ce
   se propagă în σ ca ~1e-3·σ relativ — suficient pentru praguri de rang ≥1e-6,
   insuficient sub ele (vezi secțiunea 2).
@@ -85,11 +95,14 @@ Householder în prealabil, `Tridiag_Householder`).
 criteriu prin `compute_svd`:
 
 - regresie (M2): rtol = 1e-6 (deasupra etajului de zgomot al metodei Gram);
-  pe train 18163×406 → rang 367;
-- rank-k / anomalii: convenția NumPy (rtol ≈ 6.3e-12); pe A completă
-  custom dă 393, numpy 387 — cele 6 direcții în plus sunt exact zgomotul
-  de la secțiunea 2, iar energiile la k = 5, 10, 20, 50 coincid între
-  solver-e până la ~1e-15.
+  pe train 18163×406 → rang 367, pe train+val 22704×406 → rang 376;
+- rank-k (M3): tot rtol = 1e-6 — prag uniform cu regresia, deasupra
+  etajului de zgomot; pe A completă ambele solver-e dau **387/387**, iar
+  convenția NumPy (rtol ≈ 6.3e-12) ar da 393 vs 387: cele 6 direcții în
+  plus sunt exact zgomotul de la secțiunea 2. Energia cumulativă la
+  k = 5, 10, 20, 50 nu depinde de prag și coincide între solver-e până
+  la ~1e-15. Rangul și energia sunt raportate separat, cu toleranța
+  folosită, în `results/rank_k_summary.csv`.
 
 ## 6. Valorile proprii mici negative
 
@@ -115,7 +128,7 @@ implementări, raportează în `results/solver_comparison.csv`:
 
 | măsurătoare | full (28380×406) | numeric (28380×6) |
 |---|---|---|
-| rang custom / numpy | 393 / 387 | 6 / 6 |
+| rang custom / numpy (rtol = 1e-6) | 387 / 387 | 6 / 6 |
 | max \|Δσ\| pe rangul comun | 2.35e-8 | 1.77e-10 |
 | eroare relativă de reconstrucție custom / numpy | 5.19e-11 / 4.12e-14 | 1.16e-11 / 7.86e-14 |
 | \|UᵀU − I\| custom / numpy | 1.22e-13 / 4.25e-13 | 2.63e-15 / 1.48e-13 |
@@ -126,5 +139,5 @@ implementări, raportează în `results/solver_comparison.csv`:
 Concluzia M1: pe spectrul semnificativ și pe orice predicție de regresie
 cele două implementări sunt echivalente; diferențele apar doar în cele
 ~6 direcții de zgomot de la podea, unde metoda Gram nu are acuratețe prin
-construcție — iar pragul comun de rang le exclude din toate calculele
-downstream.
+construcție — iar pragul comun de rang (rtol = 1e-6, deasupra podelei)
+le exclude din toate calculele downstream.
