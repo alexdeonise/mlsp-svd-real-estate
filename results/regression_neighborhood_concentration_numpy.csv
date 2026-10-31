@@ -6,7 +6,6 @@ least_squares,numpy,undervalued,CIVIC CENTER,2,0.04
 least_squares,numpy,undervalued,SOHO,2,0.04
 least_squares,numpy,undervalued,WILLIAMSBURG-NORTH,2,0.04
 least_squares,numpy,undervalued,MIDTOWN WEST,2,0.04
-least_squares,numpy,undervalued,GREENWICH VILLAGE-CENTRAL,2,0.04
 least_squares,numpy,undervalued,KIPS BAY,2,0.04
 least_squares,numpy,undervalued,MIDTOWN CBD,2,0.04
 least_squares,numpy,undervalued,BROWNSVILLE,1,0.02
@@ -20,6 +19,7 @@ least_squares,numpy,undervalued,RED HOOK,1,0.02
 least_squares,numpy,undervalued,OCEAN HILL,1,0.02
 least_squares,numpy,undervalued,UPPER EAST SIDE (96-110),1,0.02
 least_squares,numpy,undervalued,HARLEM-CENTRAL,1,0.02
+least_squares,numpy,undervalued,FLATBUSH-LEFFERTS GARDEN,1,0.02
 least_squares,numpy,undervalued,WILLIAMSBURG-EAST,1,0.02
 least_squares,numpy,undervalued,JACKSON HEIGHTS,1,0.02
 least_squares,numpy,undervalued,GOWANUS,1,0.02
@@ -34,13 +34,13 @@ least_squares,numpy,undervalued,KINGSBRIDGE HTS/UNIV HTS,1,0.02
 least_squares,numpy,undervalued,UPPER EAST SIDE (79-96),1,0.02
 least_squares,numpy,undervalued,RIVERDALE,1,0.02
 least_squares,numpy,undervalued,KENSINGTON,1,0.02
+least_squares,numpy,undervalued,GREENWICH VILLAGE-CENTRAL,1,0.02
 least_squares,numpy,undervalued,NEW SPRINGVILLE,1,0.02
 least_squares,numpy,undervalued,PORT IVORY,1,0.02
 least_squares,numpy,overvalued,JAVITS CENTER,4,0.08
 least_squares,numpy,overvalued,FINANCIAL,3,0.06
 least_squares,numpy,overvalued,MIDTOWN CBD,2,0.04
 least_squares,numpy,overvalued,KIPS BAY,2,0.04
-least_squares,numpy,overvalued,GREENWICH VILLAGE-CENTRAL,2,0.04
 least_squares,numpy,overvalued,WILLIAMSBURG-NORTH,2,0.04
 least_squares,numpy,overvalued,MIDTOWN WEST,2,0.04
 least_squares,numpy,overvalued,SOHO,2,0.04
@@ -48,6 +48,7 @@ least_squares,numpy,overvalued,CIVIC CENTER,2,0.04
 least_squares,numpy,overvalued,UPPER WEST SIDE (59-79),2,0.04
 least_squares,numpy,overvalued,PORT IVORY,1,0.02
 least_squares,numpy,overvalued,NEW SPRINGVILLE,1,0.02
+least_squares,numpy,overvalued,GREENWICH VILLAGE-CENTRAL,1,0.02
 least_squares,numpy,overvalued,KENSINGTON,1,0.02
 least_squares,numpy,overvalued,RIVERDALE,1,0.02
 least_squares,numpy,overvalued,UPPER EAST SIDE (79-96),1,0.02
@@ -62,6 +63,7 @@ least_squares,numpy,overvalued,CROWN HEIGHTS,1,0.02
 least_squares,numpy,overvalued,GOWANUS,1,0.02
 least_squares,numpy,overvalued,JACKSON HEIGHTS,1,0.02
 least_squares,numpy,overvalued,WILLIAMSBURG-EAST,1,0.02
+least_squares,numpy,overvalued,FLATBUSH-LEFFERTS GARDEN,1,0.02
 least_squares,numpy,overvalued,HARLEM-CENTRAL,1,0.02
 least_squares,numpy,overvalued,UPPER EAST SIDE (96-110),1,0.02
 least_squares,numpy,overvalued,OCEAN HILL,1,0.02
@@ -89,10 +91,10 @@ ridge_alpha_100,numpy,undervalued,WOODROW,1,0.02
 ridge_alpha_100,numpy,undervalued,REGO PARK,1,0.02
 ridge_alpha_100,numpy,undervalued,FASHION,1,0.02
 ridge_alpha_100,numpy,undervalued,UPPER EAST SIDE (59-79),1,0.02
-ridge_alpha_100,numpy,undervalued,RED HOOK,1,0.02
-ridge_alpha_100,numpy,undervalued,UPPER EAST SIDE (96-110),1,0.02
 ridge_alpha_100,numpy,undervalued,SUNSET PARK,1,0.02
 ridge_alpha_100,numpy,undervalued,OCEAN HILL,1,0.02
+ridge_alpha_100,numpy,undervalued,RED HOOK,1,0.02
+ridge_alpha_100,numpy,undervalued,UPPER EAST SIDE (96-110),1,0.02
 ridge_alpha_100,numpy,undervalued,HARLEM-CENTRAL,1,0.02
 ridge_alpha_100,numpy,undervalued,WILLIAMSBURG-EAST,1,0.02
 ridge_alpha_100,numpy,undervalued,GOWANUS,1,0.02
@@ -137,10 +139,10 @@ ridge_alpha_100,numpy,overvalued,JACKSON HEIGHTS,1,0.02
 ridge_alpha_100,numpy,overvalued,GOWANUS,1,0.02
 ridge_alpha_100,numpy,overvalued,WILLIAMSBURG-EAST,1,0.02
 ridge_alpha_100,numpy,overvalued,HARLEM-CENTRAL,1,0.02
-ridge_alpha_100,numpy,overvalued,OCEAN HILL,1,0.02
-ridge_alpha_100,numpy,overvalued,SUNSET PARK,1,0.02
 ridge_alpha_100,numpy,overvalued,UPPER EAST SIDE (96-110),1,0.02
 ridge_alpha_100,numpy,overvalued,RED HOOK,1,0.02
+ridge_alpha_100,numpy,overvalued,OCEAN HILL,1,0.02
+ridge_alpha_100,numpy,overvalued,SUNSET PARK,1,0.02
 ridge_alpha_100,numpy,overvalued,UPPER EAST SIDE (59-79),1,0.02
 ridge_alpha_100,numpy,overvalued,FASHION,1,0.02
 ridge_alpha_100,numpy,overvalued,REGO PARK,1,0.02

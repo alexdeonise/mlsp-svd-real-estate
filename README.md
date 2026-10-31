@@ -105,22 +105,44 @@ consistent înainte de construirea matricelor folosite în toate experimentele.
   **3.6%**, la k=50 este 22.6% (ambele solver-e coincid până la ~1e-15)
 - Rank-k, doar variabile numerice: k90 = k95 = 4; energia la k=5 este 100%
 - Regresie cu evaluare corectă train/test (80/20, seed 42, standardizare
-  fitată doar pe train, **α Ridge selectat exclusiv pe validare**, model
-  final reantrenat pe train+val și evaluat o singură dată pe test):
+  fitată doar pe datele de fit — train pentru selecția α, **train+val
+  recalculat pentru refit-ul final** —, α Ridge selectat exclusiv pe
+  validare, model final evaluat o singură dată pe test):
   - preț brut, least squares: test R² ≈ 0.541 (in-sample era 0.727 — gap
     de generalizare, nu de calcul)
-  - log(1+preț), Ridge α=1000 (ales pe validare): test R² ≈ 0.948,
-    RMSE ≈ 7.05M USD
+  - log(1+preț), Ridge α=1000 (ales pe validare): test R² ≈ 0.959,
+    RMSE ≈ 6.31M USD
 - Convergența QR verificată pe matricea reală: 0 deflații forțate,
   rezidu propriu ‖B − VDVᵀ‖/‖B‖ ≈ 7e-12 (documentat și instrumentat în
   `info`)
-- 29 de teste pytest (`tests/`) — SVD, convergență, regresie — rulate și
-  în CI (`.github/workflows/tests.yml`)
-- Robustețe la seed (`results/regression_seed_stability.csv`, 4 seed-uri):
-  R² pe test pentru log-Ridge (α ales pe validare) variază între 0.31 și
-  0.95 (media 0.72) — seed 42 (R² = 0.948) este cazul favorabil. R² pe
-  test e dominat de cum cad în split proprietățile foarte scumpe, deci
-  cifra de 0.948 trebuie citită cu această variație alături.
+- 33 de teste pytest (`tests/`) — SVD, convergență, regresie, plus
+  consistența artefactelor reale (split reproducibil, statistici QR
+  recompute pe A_numeric) — rulate și în CI (`.github/workflows/tests.yml`);
+  testele de artefacte sar explicit în CI (datele nu sunt în git) și rulează
+  local
+- Robustețe la seed (`results/regression_seed_stability.csv`, 8 seed-uri,
+  `scripts/regression_seed_stability.py`): R² pe test pentru modelul final
+  log-Ridge (α ales pe validare, diferit per seed) variază între
+  **−69.8 și 0.96**. Seed 42 (R² = 0.959) este clar cazul favorabil:
+
+  | seed | α (ales pe val) | R² test (log) | R² test (raw) |
+  |---|---|---|---|
+  | 42  | 1000   | 0.959 | 0.522 |
+  | 7   | 1000   | 0.322 | 0.720 |
+  | 13  | 1000   | 0.906 | 0.549 |
+  | 123 | 100000 | 0.036 | −0.894 |
+  | 2024| 100000 | −69.8 | 0.422 |
+  | 5   | 100000 | 0.041 | 0.430 |
+  | 99  | 100    | −0.556 | 0.252 |
+  | 314 | 100    | −1.210 | 0.724 |
+
+  Analiza excluderii top 1% cele mai scumpe (coloana `r2_excl_top1pct`)
+  arată de ce: R² în dolari este dominat de coada de distribuție — chiar
+  și fără tranzacțiile foarte scumpe, erorile în dolari rămân mari
+  (R² adesea negativ), deoarece SS_tot se prăbușește odată cu eliminarea
+  cozii. Concluzie pentru paper: R² în dolari pe test trebuie raportat
+  întotdeauna alături de MAE și de variația pe seed-uri; cifra de 0.959
+  nu este reprezentativă în sine.
 
 ### Solver custom vs numpy (M1)
 
@@ -138,14 +160,15 @@ transformarea inversă: erori mici în spațiul log devin predicții
 exponențiale. Diagnosticul din
 `results/log_target_diagnostics.csv`:
 
-- predicția maximă pe test: **47.8 miliarde USD** (maximul real: 2.2 miliarde);
-- 9 predicții peste 100M USD, una peste 1 miliarde;
-- top 5 cele mai mari reziduuri contribuie cu 99.996% la SS_res — R² e
+- predicția maximă pe test: **11.2 miliarde USD** (maximul real: 2.2 miliarde);
+- 8 predicții peste 100M USD, una peste 1 miliard;
+- top 5 cele mai mari reziduuri contribuie cu 99.92% la SS_res — R² e
   distrus de un număr de puncte care se numără pe degete.
 
 Ridge comprimă exact aceste direcții explozive: la α=1000 predicția maximă
-scade la 1.9 miliarde USD și R² pe test ajunge la 0.948. Figura
-`figures/regression_log_ls_investigation.png` arată predicția de 47.8
+scade la 2.2 miliarde USD și R² pe test ajunge la 0.959. Figura
+`figures/regression_log_ls_investigation.png` arată predicția de 11.2
 miliarde și, în același timp, că reziduurile centrale 99% sunt strânse
 în jurul zero — modelul e bun tipic, dar expm1 amplifică catastrofal
-cozile. Valoarea veche R² = −1.98 era aceeași poveste, măsurată in-sample.
+cozile. Valoarea veche R² = −1.98 era aceeași poveste, măsurată in-sample
+pe un model fitat pe tot setul.

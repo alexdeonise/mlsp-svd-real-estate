@@ -3,7 +3,10 @@
 Ruleaza pipeline-ul complet (solver custom) pe mai multe seed-uri si
 raporteaza metricile finale pe test pentru least squares si pentru Ridge
 cu alpha selectat pe validare. R² pe test e sensibil la cum cad proprietatile
-foarte scumpe in split; acest experiment cuantifica acel raspand.
+foarte scumpe in split; de aceea raportam si R² calculat pe test DIN CARE
+EXCLUDEM top 1% cele mai scumpe tranzactii (r2_excl_top1pct) — daca
+diferenta e mare, R² pe tot testul e dominat de acele tranzactii, nu de
+calitatea modelului tipic.
 
 Scrie:
   results/regression_seed_stability.csv
@@ -36,7 +39,7 @@ sys.path.insert(
     )
 )
 
-from regression import run_pipeline  # noqa: E402
+from regression import compute_metrics, run_pipeline  # noqa: E402
 
 RESULTS = os.path.join(
     ROOT,
@@ -48,7 +51,7 @@ FIGURES = os.path.join(
     "figures",
 )
 
-DEFAULT_SEEDS = (42, 7, 13, 123)
+DEFAULT_SEEDS = (42, 7, 13, 123, 2024, 5, 99, 314)
 
 
 def main():
@@ -93,8 +96,28 @@ def main():
                 if row["fit_split"] == "trainval"
             ]
 
+            final_test = result["final_test"]
+            y_test = final_test["y"]
+
+            # Pragul top 1% pe pretul ACTUAL din acest test split.
+            cut = np.quantile(
+                y_test,
+                0.99,
+            )
+
+            keep = y_test <= cut
+
+            r2_excl = {
+                model: compute_metrics(
+                    y_test[keep],
+                    predictions[keep],
+                )["r2"]
+                for model, predictions in
+                final_test["predictions"].items()
+            }
+
             for row in metric_rows:
-                rows.append({
+                out_row = {
                     "seed": seed,
                     "target": target,
                     "model": row["model"],
@@ -103,7 +126,14 @@ def main():
                     "rmse": row["rmse"],
                     "mae": row["mae"],
                     "r2": row["r2"],
-                })
+                    "r2_excl_top1pct": (
+                        r2_excl.get(row["model"])
+                        if row["split"] == "test"
+                        else None
+                    ),
+                }
+
+                rows.append(out_row)
 
             print(
                 "alpha selectat:",
@@ -129,22 +159,19 @@ def main():
 
     print("scris:", out_csv)
 
-    # Figura: R² pe test pentru fiecare seed.
+    # Figura: R² pe test pentru fiecare seed, intreg vs fara top 1% scump.
     test = df[
         df["split"] == "test"
     ]
 
     fig, axes = plt.subplots(
-        1,
         2,
-        figsize=(12, 5),
+        2,
+        figsize=(14, 9),
         sharey=False,
     )
 
-    for ax, target in zip(
-        axes,
-        ("raw", "log"),
-    ):
+    for row, target in enumerate(["raw", "log"]):
         sub = test[
             test["target"] == target
         ]
@@ -156,7 +183,8 @@ def main():
         width = 0.8 / len(args.seeds)
 
         for i, seed in enumerate(args.seeds):
-            values = []
+            full_values = []
+            excl_values = []
 
             for model in models:
                 match = sub[
@@ -164,43 +192,66 @@ def main():
                     & (sub["model"] == model)
                 ]
 
-                values.append(
-                    match["r2"].iloc[0]
-                    if len(match)
-                    else np.nan
-                )
+                if len(match):
+                    full_values.append(
+                        match["r2"].iloc[0]
+                    )
+                    excl_values.append(
+                        match["r2_excl_top1pct"].iloc[0]
+                    )
+                else:
+                    full_values.append(np.nan)
+                    excl_values.append(np.nan)
 
-            ax.bar(
-                x + i * width - 0.4 + width / 2,
-                values,
+            offset = (
+                x
+                + i * width
+                - 0.4
+                + width / 2
+            )
+
+            axes[row][0].bar(
+                offset,
+                full_values,
                 width,
                 label=f"seed {seed}",
             )
 
-        ax.axhline(
-            0,
-            linestyle="--",
-            linewidth=1,
-        )
+            axes[row][1].bar(
+                offset,
+                excl_values,
+                width,
+                label=f"seed {seed}",
+            )
 
-        ax.set_xticks(x)
-        ax.set_xticklabels(
-            models,
-            rotation=30,
-        )
+        for col, title in [
+            (0, "R² pe tot testul"),
+            (1, "R² fără top 1% cele mai scumpe"),
+        ]:
+            axes[row][col].axhline(
+                0,
+                linestyle="--",
+                linewidth=1,
+            )
 
-        ax.set_title(
-            f"Target: {target} — R² pe test"
-        )
+            axes[row][col].set_xticks(x)
+            axes[row][col].set_xticklabels(
+                models,
+                rotation=30,
+            )
 
-        ax.set_ylabel("R²")
+            axes[row][col].set_title(
+                f"Target {target} — {title}"
+            )
 
-        ax.grid(
-            alpha=0.2,
-            axis="y",
-        )
+            axes[row][col].set_ylabel("R²")
 
-    axes[0].legend()
+            axes[row][col].grid(
+                alpha=0.2,
+                axis="y",
+            )
+
+    axes[0][0].legend()
 
     fig.tight_layout()
 
@@ -221,7 +272,9 @@ def main():
 
     # Rezumat in stdout.
     summary = (
-        test.groupby(["target", "model"])["r2"]
+        test.groupby(["target", "model"])[
+            ["r2", "r2_excl_top1pct"]
+        ]
         .agg(["mean", "std", "min", "max"])
         .round(4)
     )

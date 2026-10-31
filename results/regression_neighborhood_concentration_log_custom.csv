@@ -69,17 +69,16 @@ ridge_alpha_1000,custom,undervalued,KIPS BAY,4,0.08
 ridge_alpha_1000,custom,undervalued,MIDTOWN CBD,3,0.06
 ridge_alpha_1000,custom,undervalued,FASHION,3,0.06
 ridge_alpha_1000,custom,undervalued,JAVITS CENTER,3,0.06
+ridge_alpha_1000,custom,undervalued,SOHO,3,0.06
 ridge_alpha_1000,custom,undervalued,MOUNT HOPE/MOUNT EDEN,3,0.06
 ridge_alpha_1000,custom,undervalued,DOWNTOWN-METROTECH,2,0.04
 ridge_alpha_1000,custom,undervalued,WILLIAMSBURG-NORTH,2,0.04
-ridge_alpha_1000,custom,undervalued,SOHO,2,0.04
 ridge_alpha_1000,custom,undervalued,FINANCIAL,2,0.04
 ridge_alpha_1000,custom,undervalued,MIDTOWN WEST,2,0.04
 ridge_alpha_1000,custom,undervalued,EAST NEW YORK,1,0.02
 ridge_alpha_1000,custom,undervalued,BROOKLYN HEIGHTS,1,0.02
 ridge_alpha_1000,custom,undervalued,GRAMERCY,1,0.02
 ridge_alpha_1000,custom,undervalued,CIVIC CENTER,1,0.02
-ridge_alpha_1000,custom,undervalued,MOTT HAVEN/PORT MORRIS,1,0.02
 ridge_alpha_1000,custom,undervalued,WILLIAMSBURG-SOUTH,1,0.02
 ridge_alpha_1000,custom,undervalued,HARLEM-EAST,1,0.02
 ridge_alpha_1000,custom,undervalued,FLATBUSH-NORTH,1,0.02
@@ -103,11 +102,11 @@ ridge_alpha_1000,custom,overvalued,KIPS BAY,4,0.08
 ridge_alpha_1000,custom,overvalued,MIDTOWN CBD,3,0.06
 ridge_alpha_1000,custom,overvalued,FASHION,3,0.06
 ridge_alpha_1000,custom,overvalued,MOUNT HOPE/MOUNT EDEN,3,0.06
+ridge_alpha_1000,custom,overvalued,SOHO,3,0.06
 ridge_alpha_1000,custom,overvalued,JAVITS CENTER,3,0.06
+ridge_alpha_1000,custom,overvalued,FINANCIAL,2,0.04
 ridge_alpha_1000,custom,overvalued,MIDTOWN WEST,2,0.04
 ridge_alpha_1000,custom,overvalued,WILLIAMSBURG-NORTH,2,0.04
-ridge_alpha_1000,custom,overvalued,FINANCIAL,2,0.04
-ridge_alpha_1000,custom,overvalued,SOHO,2,0.04
 ridge_alpha_1000,custom,overvalued,DOWNTOWN-METROTECH,2,0.04
 ridge_alpha_1000,custom,overvalued,KINGSBRIDGE HTS/UNIV HTS,1,0.02
 ridge_alpha_1000,custom,overvalued,GREENWICH VILLAGE-CENTRAL,1,0.02
@@ -128,7 +127,6 @@ ridge_alpha_1000,custom,overvalued,HARLEM-CENTRAL,1,0.02
 ridge_alpha_1000,custom,overvalued,FLATBUSH-NORTH,1,0.02
 ridge_alpha_1000,custom,overvalued,HARLEM-EAST,1,0.02
 ridge_alpha_1000,custom,overvalued,WILLIAMSBURG-SOUTH,1,0.02
-ridge_alpha_1000,custom,overvalued,MOTT HAVEN/PORT MORRIS,1,0.02
 ridge_alpha_1000,custom,overvalued,CIVIC CENTER,1,0.02
 ridge_alpha_1000,custom,overvalued,GRAMERCY,1,0.02
 ridge_alpha_1000,custom,overvalued,BROOKLYN HEIGHTS,1,0.02

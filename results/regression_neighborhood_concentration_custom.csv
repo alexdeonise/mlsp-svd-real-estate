@@ -6,7 +6,6 @@ least_squares,custom,undervalued,CIVIC CENTER,2,0.04
 least_squares,custom,undervalued,SOHO,2,0.04
 least_squares,custom,undervalued,WILLIAMSBURG-NORTH,2,0.04
 least_squares,custom,undervalued,MIDTOWN WEST,2,0.04
-least_squares,custom,undervalued,GREENWICH VILLAGE-CENTRAL,2,0.04
 least_squares,custom,undervalued,KIPS BAY,2,0.04
 least_squares,custom,undervalued,MIDTOWN CBD,2,0.04
 least_squares,custom,undervalued,BROWNSVILLE,1,0.02
@@ -20,6 +19,7 @@ least_squares,custom,undervalued,RED HOOK,1,0.02
 least_squares,custom,undervalued,OCEAN HILL,1,0.02
 least_squares,custom,undervalued,UPPER EAST SIDE (96-110),1,0.02
 least_squares,custom,undervalued,HARLEM-CENTRAL,1,0.02
+least_squares,custom,undervalued,FLATBUSH-LEFFERTS GARDEN,1,0.02
 least_squares,custom,undervalued,WILLIAMSBURG-EAST,1,0.02
 least_squares,custom,undervalued,JACKSON HEIGHTS,1,0.02
 least_squares,custom,undervalued,GOWANUS,1,0.02
@@ -34,13 +34,13 @@ least_squares,custom,undervalued,KINGSBRIDGE HTS/UNIV HTS,1,0.02
 least_squares,custom,undervalued,UPPER EAST SIDE (79-96),1,0.02
 least_squares,custom,undervalued,RIVERDALE,1,0.02
 least_squares,custom,undervalued,KENSINGTON,1,0.02
+least_squares,custom,undervalued,GREENWICH VILLAGE-CENTRAL,1,0.02
 least_squares,custom,undervalued,NEW SPRINGVILLE,1,0.02
 least_squares,custom,undervalued,PORT IVORY,1,0.02
 least_squares,custom,overvalued,JAVITS CENTER,4,0.08
 least_squares,custom,overvalued,FINANCIAL,3,0.06
 least_squares,custom,overvalued,MIDTOWN CBD,2,0.04
 least_squares,custom,overvalued,KIPS BAY,2,0.04
-least_squares,custom,overvalued,GREENWICH VILLAGE-CENTRAL,2,0.04
 least_squares,custom,overvalued,WILLIAMSBURG-NORTH,2,0.04
 least_squares,custom,overvalued,MIDTOWN WEST,2,0.04
 least_squares,custom,overvalued,SOHO,2,0.04
@@ -48,6 +48,7 @@ least_squares,custom,overvalued,CIVIC CENTER,2,0.04
 least_squares,custom,overvalued,UPPER WEST SIDE (59-79),2,0.04
 least_squares,custom,overvalued,PORT IVORY,1,0.02
 least_squares,custom,overvalued,NEW SPRINGVILLE,1,0.02
+least_squares,custom,overvalued,GREENWICH VILLAGE-CENTRAL,1,0.02
 least_squares,custom,overvalued,KENSINGTON,1,0.02
 least_squares,custom,overvalued,RIVERDALE,1,0.02
 least_squares,custom,overvalued,UPPER EAST SIDE (79-96),1,0.02
@@ -62,6 +63,7 @@ least_squares,custom,overvalued,CROWN HEIGHTS,1,0.02
 least_squares,custom,overvalued,GOWANUS,1,0.02
 least_squares,custom,overvalued,JACKSON HEIGHTS,1,0.02
 least_squares,custom,overvalued,WILLIAMSBURG-EAST,1,0.02
+least_squares,custom,overvalued,FLATBUSH-LEFFERTS GARDEN,1,0.02
 least_squares,custom,overvalued,HARLEM-CENTRAL,1,0.02
 least_squares,custom,overvalued,UPPER EAST SIDE (96-110),1,0.02
 least_squares,custom,overvalued,OCEAN HILL,1,0.02
@@ -89,10 +91,10 @@ ridge_alpha_100,custom,undervalued,WOODROW,1,0.02
 ridge_alpha_100,custom,undervalued,REGO PARK,1,0.02
 ridge_alpha_100,custom,undervalued,FASHION,1,0.02
 ridge_alpha_100,custom,undervalued,UPPER EAST SIDE (59-79),1,0.02
-ridge_alpha_100,custom,undervalued,RED HOOK,1,0.02
-ridge_alpha_100,custom,undervalued,UPPER EAST SIDE (96-110),1,0.02
 ridge_alpha_100,custom,undervalued,SUNSET PARK,1,0.02
 ridge_alpha_100,custom,undervalued,OCEAN HILL,1,0.02
+ridge_alpha_100,custom,undervalued,RED HOOK,1,0.02
+ridge_alpha_100,custom,undervalued,UPPER EAST SIDE (96-110),1,0.02
 ridge_alpha_100,custom,undervalued,HARLEM-CENTRAL,1,0.02
 ridge_alpha_100,custom,undervalued,WILLIAMSBURG-EAST,1,0.02
 ridge_alpha_100,custom,undervalued,GOWANUS,1,0.02
@@ -137,10 +139,10 @@ ridge_alpha_100,custom,overvalued,JACKSON HEIGHTS,1,0.02
 ridge_alpha_100,custom,overvalued,GOWANUS,1,0.02
 ridge_alpha_100,custom,overvalued,WILLIAMSBURG-EAST,1,0.02
 ridge_alpha_100,custom,overvalued,HARLEM-CENTRAL,1,0.02
-ridge_alpha_100,custom,overvalued,OCEAN HILL,1,0.02
-ridge_alpha_100,custom,overvalued,SUNSET PARK,1,0.02
 ridge_alpha_100,custom,overvalued,UPPER EAST SIDE (96-110),1,0.02
 ridge_alpha_100,custom,overvalued,RED HOOK,1,0.02
+ridge_alpha_100,custom,overvalued,OCEAN HILL,1,0.02
+ridge_alpha_100,custom,overvalued,SUNSET PARK,1,0.02
 ridge_alpha_100,custom,overvalued,UPPER EAST SIDE (59-79),1,0.02
 ridge_alpha_100,custom,overvalued,FASHION,1,0.02
 ridge_alpha_100,custom,overvalued,REGO PARK,1,0.02

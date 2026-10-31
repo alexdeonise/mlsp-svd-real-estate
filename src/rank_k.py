@@ -161,6 +161,8 @@ def main():
 
     summary_rows = []
 
+    qr_stats_rows = []
+
     for name, A in matrices:
         print(f"=== matricea {name}: {A.shape[0]}x{A.shape[1]} ===")
 
@@ -171,6 +173,36 @@ def main():
             args.atol,
             solvers,
         )
+
+        for solver in solvers:
+            info = per_solver[solver]["info"]
+
+            qr_stats_rows.append({
+                "matrix": name,
+                "solver": solver,
+                "rtol": info["rtol"],
+                "atol": info["atol"],
+                "cutoff": info["cutoff"],
+                "rank": info["rank"],
+                "sigma_max": info["sigma_max"],
+                "orth_U": info["orth_U"],
+                "orth_V": info["orth_V"],
+                "iterations": info["iterations"],
+                "converged": info["converged"],
+                "n_forced_deflations": info[
+                    "n_forced_deflations"
+                ],
+                "max_forced_deflation_residual": info[
+                    "max_forced_deflation_residual"
+                ],
+                "eigen_residual": info[
+                    "eigen_residual"
+                ],
+                "n_negative_clipped": info[
+                    "n_negative_clipped"
+                ],
+                "seconds": info["seconds"],
+            })
 
         kept_custom = per_solver["custom"]["kept"]
         rel_custom = per_solver["custom"]["rel_err"]
@@ -248,6 +280,24 @@ def main():
                 )
 
         summary_rows.append(row)
+
+    qr_stats_path = os.path.join(
+        RESULTS,
+        "svd_qr_stats.csv",
+    )
+
+    with open(qr_stats_path, "w", newline="") as f:
+        w = csv.DictWriter(
+            f,
+            fieldnames=list(
+                qr_stats_rows[0].keys()
+            ),
+        )
+
+        w.writeheader()
+        w.writerows(qr_stats_rows)
+
+    print("scris:", qr_stats_path)
 
     summary_path = os.path.join(
         RESULTS,

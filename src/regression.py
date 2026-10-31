@@ -15,6 +15,12 @@ Protocol (M2 + corecturile de metodologie):
   7. Pentru --log-target predictiile sunt convertite inapoi in USD (expm1)
      INAINTE de calculul metricelor in dolari.
 
+Conventia interceptului: designul NU are coloana de 1; dupa standardizare
+pe multimea de fit coloanele au media exact 0, deci centrarea lui y cu
+media pe multimea de fit ESTE interceptul exact al modelului cu intercept
+(coeficientii raman neschimbati). Faza 1 centreaza cu media pe train,
+faza 2 (refit final) cu media pe train+val.
+
 Scrie:
   results/regression_tt_metrics.csv            metrici (val + final)
   results/regression_split.csv                 indicii splitului + seed
@@ -325,12 +331,16 @@ def run_pipeline(
         len(test_idx),
     )
 
-    X = standardize_on_train(X_raw, train_idx)
+    # Faza 1 (selectia alpha): standardizare fitata pe train.
+    # Faza 2 (refit final): standardizare RECALCULATA pe train+val —
+    # modelul final vede doar statisticile multimii pe care e antrenat.
+    X_phase1 = standardize_on_train(X_raw, train_idx)
+    X_phase2 = standardize_on_train(X_raw, trainval_idx)
 
-    A_train = X[train_idx]
-    A_val = X[val_idx]
-    A_trainval = X[trainval_idx]
-    A_test = X[test_idx]
+    A_train = X_phase1[train_idx]
+    A_val = X_phase1[val_idx]
+    A_trainval = X_phase2[trainval_idx]
+    A_test = X_phase2[test_idx]
 
     if log_target:
         y_fit_all = np.log1p(y)
@@ -490,6 +500,8 @@ def run_pipeline(
         (selected_name, selected_alpha),
     ]
 
+    test_predictions = {}
+
     for model_name, alpha in final_specs:
         coefficients = fit_coefficients(
             U_tv,
@@ -568,6 +580,7 @@ def run_pipeline(
         )
 
         residual_tables[model_name] = residual_table
+        test_predictions[model_name] = predictions_test
 
         if log_target:
             diagnostics_rows.append(
@@ -617,6 +630,11 @@ def run_pipeline(
         "diagnostics_rows": diagnostics_rows,
         "residual_tables": residual_tables,
         "selected": selected,
+        "final_test": {
+            "idx": test_idx,
+            "y": y[test_idx],
+            "predictions": test_predictions,
+        },
     }
 
 
